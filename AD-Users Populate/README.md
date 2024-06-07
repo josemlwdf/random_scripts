@@ -5,3 +5,6 @@ https://www.alitajran.com/bulk-create-ad-users-with-random-passwords/
 
 ### Usage
     just copy the 2 files on C:\ and launch the ps1 script
+
+### Generator
+This script can be used to generate a new set of users
