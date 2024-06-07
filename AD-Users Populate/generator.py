@@ -30,7 +30,7 @@ job_titles = ["Manager", "Developer", "Analyst"]
 companies = ["CompanyA", "CompanyB", "CompanyC"]
 
 # OU field value
-ou = "OU=Users,,DC=soupdecode,DC=local"
+ou = "OU=Users,DC=soupdecode,DC=local"
 
 # Generate random data for each field
 rows = []
