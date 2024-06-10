@@ -88,7 +88,7 @@ for i in range(1000):
     rows.append(row)
 
 # Write to CSV file
-csv_file = "output.csv"
+csv_file = "NewUsersRP.csv"
 with open(csv_file, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(headers)
