@@ -113,7 +113,7 @@ foreach ($User in $ADUsers) {
                        -Department $User.department `
                        -AccountPassword (ConvertTo-SecureString $password -AsPlainText -Force) `
                        -ChangePasswordAtLogon $False `
-		       -Description $User.description
+					   -Description $User.description
 
             # If the user is created, add the data to the export array
             $User | Add-Member -MemberType NoteProperty -Name "Initial Password" -Value $password -Force
