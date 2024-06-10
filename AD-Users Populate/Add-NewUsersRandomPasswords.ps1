@@ -17,7 +17,7 @@
     V1.00, 03/16/2020 - Initial version
     V2.00, 01/28/2024 - Added try/catch and changed to splatting
 
-    .FORKED_CHANGES
+    .FORKEDCHANGES
     V3.00, 06/07/2024 - Adapted for PowerShell 2.0 compatibility
     V4.00, 06/07/2024 - Fixed object name syntax issues
 #>
