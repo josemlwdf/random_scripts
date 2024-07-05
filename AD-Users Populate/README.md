@@ -1,5 +1,5 @@
 ### Disclaimer
-This is a modification from the script on this post:
+This is a modification from the script on this post to make it compatible with Powershell 2.0:
 
 https://www.alitajran.com/bulk-create-ad-users-with-random-passwords/
 
