@@ -1,0 +1,14 @@
+#!/bin/bash
+
+arg=$1
+location="/opt/wordlists/shells/"
+
+if [[ "$arg" != "" ]]; then
+  cd $location
+  echo $location
+  ls -l /opt/wordlists/shells | grep $arg --color=auto | grep -v 'shell'
+  echo ''
+  cat *.$arg
+else
+  ls -l /opt/wordlists/shells | grep shell --color=auto
+fi
