@@ -97,3 +97,5 @@ echo '[!] Install Caido and Google Chrome'
 echo 'Move caido-cli to /usr/sbin'
 echo 'sudo apt -y install ./google-chrome-stable_current_amd64.deb'
 sudo ln -s /usr/bin/google-chrome /usr/sbin/chrome
+
+rm -f custom_wsl.sh
