@@ -8,24 +8,23 @@ sudo touch /root/.hushlogin
 echo 'Windows Username:'
 read wusername
 
-# Create symlinks to Windows Downloads folder
-ln -s /mnt/c/Users/$wusername/Downloads ~/Downloads
-sudo ln -s /mnt/c/Users/$wusername/Downloads /root/Downloads
+# Create symlinks to Windows Downloads folder, force if they exist
+ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads
+sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads
 
 # Create an edit script
-echo 'notepad.exe $1' | sudo tee /usr/sbin/edit
+echo 'notepad.exe $1' | sudo tee /usr/sbin/edit > /dev/null
 sudo chmod +x /usr/sbin/edit
 
 # Redirect history and other files to /dev/null
-ln -s /dev/null ~/.lesshst
-ln -s /dev/null ~/.viminfo
-ln -s /dev/null ~/.wget-hsts
-ln -s /dev/null ~/.nc_history
-ln -s /dev/null ~/.python_history
-ln -s /dev/null ~/.lesshst
+ln -sf /dev/null ~/.lesshst
+ln -sf /dev/null ~/.viminfo
+ln -sf /dev/null ~/.wget-hsts
+ln -sf /dev/null ~/.nc_history
+ln -sf /dev/null ~/.python_history
 
-# Append cron jobs safely
-{ crontab -l; echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; } | crontab -
+# Append cron jobs safely, handling missing crontab case
+( crontab -l 2>/dev/null; echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*' ) | crontab -
 
 # Download and setup bash and zsh configs
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
@@ -37,22 +36,26 @@ sudo cp ~/.zshrc /root/.zshrc
 sudo apt install git -y
 
 # Create username-anarchy script
-echo 'ruby /opt/username-anarchy/username-anarchy' | sudo tee /usr/sbin/username-anarchy
+echo 'ruby /opt/username-anarchy/username-anarchy' | sudo tee /usr/sbin/username-anarchy > /dev/null
 sudo chmod +x /usr/sbin/username-anarchy
 
-# Download and setup various scripts
+# Download and setup various scripts, checking for curl success
 SCRIPTS=("untar" "hist" "dcode" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx")
 
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
-    sudo chmod +x /usr/sbin/$script
+    if [[ $? -eq 0 ]]; then
+        sudo chmod +x /usr/sbin/$script
+    else
+        echo "Failed to download $script. Skipping..."
+    fi
 done
 
 # Add Kali repository
-echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list
-echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list
+echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
+echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
 
 # Install other tools
 curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
@@ -64,14 +67,14 @@ sudo pipx install git+https://github.com/Pennyw0rth/NetExec
 sudo pip install requests git-dumper
 
 # Download and configure additional files
-sudo curl https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
 
 # Update locate database
 sudo updatedb
 
 # Install ngrok and configure it
-curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc > /dev/null
+echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list > /dev/null
 sudo apt update && sudo apt install ngrok -y
 
 # Prompt for Ngrok token
