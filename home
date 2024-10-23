@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Check if the script is called with an argument
+if [ "$1" = "set" ]; then
+  # Set the $home variable to the current directory
+  if [[ "$(pwd)" == *"~/home"* ]]; then
+        newlink=$(readlink -f "$(pwd)")
+        rm -f ~/home
+        ln -s $newlink ~/home
+  else
+        rm -f ~/home
+        ln -s $(pwd) ~/home
+  fi
+elif [ -z "$1" ]; then
+  ls -lah ~/home | cut -d ">" -f 2
+else
+  # Invalid argument provided
+  echo "Invalid argument. Usage: home [set]"
+fi

@@ -1,0 +1,14 @@
+#!/bin/bash
+if [[ "$1" != "" ]]; then
+        mkdir $1
+        cd $1
+        mkdir outputs
+        ln -s /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt rockyou.txt
+        ln -s /opt/Windows windows
+        touch foothold.txt
+        touch privesc.txt
+        touch creds.txt
+        touch hashes.txt
+else
+        echo "USAGE: $0 machine_name"
+fi
