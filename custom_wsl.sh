@@ -69,7 +69,6 @@ curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | ba
 # Install various packages
 sudo apt install steghide stegsnow ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq ltrace sntp tftp-hpa -y
 sudo pipx ensurepath
-sudo pipx install git+https://github.com/Pennyw0rth/NetExec
 sudo pip install requests git-dumper
 
 # Download and configure additional files
@@ -107,3 +106,5 @@ sudo chsh -s /bin/zsh think
 sudo ln -s /usr/bin/google-chrome /usr/sbin/chrome
 
 rm -f custom_wsl.sh
+
+sudo pipx install git+https://github.com/Pennyw0rth/NetExec
