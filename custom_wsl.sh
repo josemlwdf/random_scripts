@@ -68,7 +68,7 @@ curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | ba
 
 # Install various packages
 sudo apt install steghide freerdp2-x11 stegsnow ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq ltrace sntp tftp-hpa -y
-sudo pipx ensurepath
+pipx ensurepath
 sudo pip install requests git-dumper
 
 # Download and configure additional files
