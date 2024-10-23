@@ -1,0 +1,3 @@
+#!/bin/bash
+cat ~/.zsh_history 2>/dev/null | grep -i $1
+cat ~/.bash_history 2>/dev/null | grep -i $1
