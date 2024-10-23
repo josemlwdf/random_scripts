@@ -1,5 +1,5 @@
 #!/bin/sh
-cp -r /home/think/CTF/* /mnt/d/Notes/
+cp -r -u -P -f /home/think/CTF/* /mnt/d/Notes/
 cd /mnt/d/Notes/
 rm date.date
 touch date.date
