@@ -1,0 +1,9 @@
+#!/bin/bash
+echo 'impacket-smbserver share $(pwd) -smb2support -user "smb" -password "smb"'
+ips
+echo ''
+echo 'net use z: \\ip\share /user:smb smb'
+echo ''
+impacket-smbserver share $(pwd) -smb2support -user "smb" -password "smb"
+
+
