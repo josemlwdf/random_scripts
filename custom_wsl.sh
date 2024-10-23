@@ -4,8 +4,6 @@
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
 
-mkdir -p ~/CTF/{HackMyVM,HTB,THM,Vulnyx,OSCP/Play,OTW,DockerLabs}
-
 # Prompt for Windows username
 echo 'Windows Username:'
 read wusername
@@ -43,8 +41,8 @@ echo 'ruby /opt/username-anarchy/username-anarchy' | sudo tee /usr/sbin/username
 sudo chmod +x /usr/sbin/username-anarchy
 
 # Download and setup various scripts
-SCRIPTS=("untar" "hist" "dcode" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py" 
-         "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh" 
+SCRIPTS=("untar" "hist" "dcode" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py"
+         "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx")
 
 for script in "${SCRIPTS[@]}"; do
