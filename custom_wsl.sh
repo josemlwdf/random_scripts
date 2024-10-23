@@ -107,4 +107,4 @@ sudo ln -s /usr/bin/google-chrome /usr/sbin/chrome
 
 rm -f custom_wsl.sh
 
-sudo pipx install git+https://github.com/Pennyw0rth/NetExec
+sudo pipx install git+https://github.com/Pennyw0rth/NetExec --break-system-packages
