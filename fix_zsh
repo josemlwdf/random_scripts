@@ -1,0 +1,4 @@
+#!/bin/bash
+strings ~/.zsh_history > /dev/shm/.backup
+cat /dev/shm/.backup > ~/.zsh_history
+rm /dev/shm/.backup
