@@ -4,6 +4,8 @@
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
 
+mkdir -p ~/CTF/{HackMyVM,HTB,THM,Vulnyx,OSCP/Play,OTW,DockerLabs}
+
 # Prompt for Windows username
 echo 'Windows Username:'
 read wusername
