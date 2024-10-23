@@ -1,0 +1,8 @@
+#!/bin/sh
+cp -r /home/think/CTF/* /mnt/d/Notes/
+cd /mnt/d/Notes/
+rm date.date
+touch date.date
+
+# Just reusing this script
+rm -rf /wsl*
