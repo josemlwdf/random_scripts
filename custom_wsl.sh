@@ -35,6 +35,9 @@ sudo cp ~/.zshrc /root/.zshrc
 # Install Git
 sudo apt install git -y
 
+# Install PIP
+sudo apt install python3-pip
+
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy' | sudo tee /usr/sbin/username-anarchy > /dev/null
 sudo chmod +x /usr/sbin/username-anarchy
