@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo chown think:think /opt
+sudo chmod 777 /opt
+
 # Suppress login messages
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
