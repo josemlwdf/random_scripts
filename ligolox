@@ -1,0 +1,4 @@
+#!/bin/bash
+ip tuntap add user root mode tun ligolo
+ip link set ligolo up
+/opt/Ligolo/proxy -selfcert
