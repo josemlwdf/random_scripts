@@ -1,0 +1,15 @@
+#!/usr/bin/python3
+import urllib.parse
+import sys
+
+def full_urlencode(argument):
+    encoded_argument = urllib.parse.quote(argument, safe='')
+    return encoded_argument
+
+# Example usage
+try:
+        argument = sys.argv[1]
+        encoded_argument = full_urlencode(argument)
+        print(encoded_argument)
+except:
+        pass
