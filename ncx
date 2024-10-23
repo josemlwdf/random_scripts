@@ -1,0 +1,2 @@
+#!/bin/bash
+rlwrap nc -nlvp $1
