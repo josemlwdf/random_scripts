@@ -75,6 +75,9 @@ sudo pip install requests git-dumper pyftpdlib --break-system-packages
 # Download and configure additional files
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
 
+sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
+sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
+
 # Update locate database
 sudo updatedb
 
