@@ -49,7 +49,7 @@ sudo chmod +x /usr/sbin/username-anarchy
 # Download and setup various scripts, checking for curl success
 SCRIPTS=("untar" "hist" "dcode" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
-         "academy" "backup" "thm" "htb" "offsec" "ncx")
+         "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade")
 
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
