@@ -34,6 +34,7 @@ curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/ma
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
 sudo cp ~/.bashrc /root/.bashrc
 sudo cp ~/.zshrc /root/.zshrc
+sudo ln -s /usr/bin/python3 /usr/sbin/python
 
 # Install Git
 sudo apt install git -y
