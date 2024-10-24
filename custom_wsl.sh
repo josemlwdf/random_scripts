@@ -6,6 +6,7 @@ sudo chmod 777 /opt
 # Suppress login messages
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
+sudo curl https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 
 # Prompt for Windows username
 echo 'Windows Username:'
