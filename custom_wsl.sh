@@ -95,6 +95,7 @@ read ntoken
 sudo ngrok config add-authtoken $ntoken
 
 # Generate SSH keys
+mkdir ~/.ssh
 ssh-keygen -t rsa -b 4096
 
 # Instructions for the user
