@@ -1,9 +1,9 @@
-- BASH
+echo '- BASH
 script /dev/null -c bash
 ^Z                 
 stty raw -echo; fg
 Terminal type? screen; 
-export TERM=xterm-256color; export PS1='\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ '; alias ls='ls -lah --color=auto'; alias cls='clear'; export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+export TERM=xterm-256color; export PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ "; alias ls="ls -lah --color=auto"; alias cls="clear"; export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
 
 - MAGIC
 ^Z
@@ -13,14 +13,6 @@ xterm-256color
 speed 38400 baud; rows 42; columns 174; line = 0;
 3: stty raw -echo;fg
 4: Export the valueswegot to our reverse shell:
-export SHELL=bash;export TERM=xterm256-color;export PS1='\[\e[32m\]\u@\h\[\e[34m\]\w\[\e[0m\]\$ '; alias ls='ls -lah --color=auto'
+export TERM=xterm-256color; export PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ "; alias ls="ls -lah --color=auto"; alias cls="clear"; export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
 stty rows 42 columns 174
-
-
-- PYTHON
-python -c 'import pty; pty.spawn("/bin/bash")'
-
-python3 -c 'import pty; pty.spawn("/bin/bash")'
-^Z                 
-stty raw -echo; fg
-export TERM=xterm-256color; export PS1='\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ '; alias ls='ls -lah --color=auto'; alias cls='clear'; export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
+'
