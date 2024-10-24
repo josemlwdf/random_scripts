@@ -1,4 +1,4 @@
 #!/bin/bash
 ips
 echo 'USER: test ==== PASS: test'
-python3 -m pyftpdlib -p 21 --username="test" --password="test" --write
+sudo python3 -m pyftpdlib -p 21 --username="test" --password="test" --write
