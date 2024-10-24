@@ -67,9 +67,9 @@ echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | su
 curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 
 # Install various packages
-sudo apt install steghide freerdp2-x11 stegsnow ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq ltrace sntp tftp-hpa -y
+sudo apt install net-tools steghide freerdp2-x11 stegsnow ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq ltrace sntp tftp-hpa -y
 pipx ensurepath
-sudo pip install requests git-dumper
+sudo pip install requests git-dumper --break-system-packages
 
 # Download and configure additional files
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
