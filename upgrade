@@ -1,18 +1,1 @@
-echo '- BASH
-script /dev/null -c bash
-^Z                 
-stty raw -echo; fg
-Terminal type? screen; 
-export TERM=xterm-256color; export PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ "; alias ls="ls -lah --color=auto"; alias cls="clear"; export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
-
-- MAGIC
-^Z
-1: We need the XTERM value: echo $TERM
-xterm-256color
-2: We need the rows and columns of the curent Window: stty -a 
-speed 38400 baud; rows 42; columns 174; line = 0;
-3: stty raw -echo;fg
-4: Export the valueswegot to our reverse shell:
-export TERM=xterm-256color; export PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ "; alias ls="ls -lah --color=auto"; alias cls="clear"; export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/games:/usr/games
-stty rows 42 columns 174
-'
+python3 -c "$(echo -n cHJpbnQociIiIi0gQkFTSApzY3JpcHQgL2Rldi9udWxsIC1jIGJhc2gKXloKc3R0eSByYXcgLWVjaG87IGZnClRlcm1pbmFsIHR5cGU/IHNjcmVlbjsKZXhwb3J0IFRFUk09eHRlcm0tMjU2Y29sb3I7IGV4cG9ydCBQUzE9J1xbXGVbMzJtXF1cdUBcaFxbXGVbMG1cXTpcW1xlWzM0bVxdXHdcW1xlWzBtXF1cJCAnOyBhbGlhcyBscz0nbHMgLWxhaCAtLWNvbG9yPWF1dG8nOyBhbGlhcyBjbHM9J2NsZWFyJzsgZXhwb3J0IFBBVEg9JFBBVEg6L3Vzci9sb2NhbC9zYmluOi91c3IvbG9jYWwvYmluOi91c3Ivc2JpbjovdXNyL2Jpbjovc2JpbjovYmluOi91c3IvbG9jYWwvZ2FtZXM6L3Vzci9nYW1lcwoKLSBNQUdJQwpeWgoxOiBXZSBuZWVkIHRoZSBYVEVSTSB2YWx1ZTogZWNobyAkVEVSTQp4dGVybS0yNTZjb2xvcgoyOiBXZSBuZWVkIHRoZSByb3dzIGFuZCBjb2x1bW5zIG9mIHRoZSBjdXJlbnQgV2luZG93OiBzdHR5IC1hCnNwZWVkIDM4NDAwIGJhdWQ7IHJvd3MgNDI7IGNvbHVtbnMgMTc0OyBsaW5lID0gMDsKMzogc3R0eSByYXcgLWVjaG87ZmcKNDogRXhwb3J0IHRoZSB2YWx1ZXMgd2UgZ290IHRvIG91ciByZXZlcnNlIHNoZWxsOgpzdHR5IHJvd3MgNDIgY29sdW1ucyAxNzQKIiIiKQ== | base64 -d)"
