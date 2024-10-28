@@ -105,12 +105,6 @@ echo 'Press Enter when the /opt folder is in place.'
 read
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 
-# Instructions to install additional software
-echo '[!] Install Caido and Google Chrome'
-echo 'Move caido-cli to /usr/sbin'
-echo 'sudo apt -y install ./google-chrome-stable_current_amd64.deb'
-echo sudo ln -s /usr/bin/google-chrome /usr/sbin/chrome
-
 sudo chsh -s /bin/zsh think
 rm -f custom_wsl.sh
 pipx install git+https://github.com/Pennyw0rth/NetExec --break-system-packages
