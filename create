@@ -2,6 +2,7 @@
 if [[ "$1" != "" ]]; then
         mkdir $1
         cd $1
+        home set 2>/dev/null
         ln -s /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt rockyou.txt
         ln -s /opt/Windows windows
         touch foothold.txt
