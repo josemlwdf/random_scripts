@@ -79,6 +79,9 @@ sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/hea
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker
 sudo chmod +x /usr/sbin/policy_checker
 
+sudo curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -o /usr/sbin/jwt_tool
+sudo chmod +x /usr/sbin/jwt_tool
+
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
 
