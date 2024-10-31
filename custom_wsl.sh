@@ -24,7 +24,6 @@ sudo chmod +x /usr/sbin/edit
 ln -sf /dev/null ~/.lesshst
 ln -sf /dev/null ~/.viminfo
 ln -sf /dev/null ~/.wget-hsts
-ln -sf /dev/null ~/.nc_history
 ln -sf /dev/null ~/.python_history
 
 # Append cron jobs safely, handling missing crontab case
