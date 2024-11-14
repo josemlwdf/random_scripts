@@ -4,10 +4,8 @@ sudo chmod 777 /opt
 # Suppress login messages
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
-sudo curl https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
-# Prompt for Windows username
-echo 'Windows Username:'
-read wusername
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
+wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
 ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads
 sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads
