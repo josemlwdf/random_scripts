@@ -91,5 +91,5 @@ read
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chsh -s /bin/zsh think
 rm -f custom_wsl.sh
-pipx install git+https://github.com/Pennyw0rth/NetExec --break-system-packages
+pipx install git+https://github.com/Pennyw0rth/NetExec
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
