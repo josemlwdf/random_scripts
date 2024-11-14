@@ -89,6 +89,7 @@ echo '[!] Download the /opt folder backup from Mega'
 echo 'Press Enter when the /opt folder is in place.'
 read
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
+sudo chmod +x /usr/sbin/kerbrute
 sudo chsh -s /bin/zsh think
 rm -f custom_wsl.sh
 pipx install git+https://github.com/Pennyw0rth/NetExec
