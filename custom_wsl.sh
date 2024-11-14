@@ -4,6 +4,13 @@ sudo chmod 777 /opt
 # Suppress login messages
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
+mkdir ~/CTF
+PLATFORMS=("HackMyVM" "HTB" "DockerLabs" "OSCP" "OTW" "THM"
+         "VulnHub" "Vulnyx")
+for platform in "${PLATFORMS[@]}"; do
+    mkdir ~/CTF/$platform
+done 
+mkdir ~/CTF/OSCP/Play
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
