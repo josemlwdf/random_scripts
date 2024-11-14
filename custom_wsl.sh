@@ -28,7 +28,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python
 # Install Git
 sudo apt install git -y
 # Install PIP
-sudo apt install python3-pip
+sudo apt install python3-pip -y
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
 sudo chmod +x /usr/sbin/username-anarchy
@@ -68,7 +68,7 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
   sudo gpg --dearmor -o /etc/apt/keyrings/ngrok.gpg && \
   echo "deb [signed-by=/etc/apt/keyrings/ngrok.gpg] https://ngrok-agent.s3.amazonaws.com buster main" | \
   sudo tee /etc/apt/sources.list.d/ngrok.list && \
-  sudo apt update && sudo apt install ngrok
+  sudo apt update -y && sudo apt install ngrok -y
 # Prompt for Ngrok token
 echo https://dashboard.ngrok.com/get-started/your-authtoken
 echo "Ngrok Token:"
