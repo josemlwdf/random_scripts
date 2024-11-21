@@ -39,18 +39,15 @@ sudo apt install python3-pip -y
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
 sudo chmod +x /usr/sbin/username-anarchy
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
 # Download and setup various scripts, checking for curl success
-SCRIPTS=("untar" "hist" "dcode" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py"
+SCRIPTS=("untar" "hist" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade")
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
-    if [[ $? -eq 0 ]]; then
-        sudo chmod +x /usr/sbin/$script
-    else
-        echo "Failed to download $script. Skipping..."
-    fi
 done
+sudo chmod +x /usr/sbin/*
 # Add Kali repository
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
 echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
