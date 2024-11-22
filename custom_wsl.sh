@@ -25,7 +25,7 @@ ln -sf /dev/null ~/.viminfo
 ln -sf /dev/null ~/.wget-hsts
 ln -sf /dev/null ~/.python_history
 # Append cron jobs safely, handling missing crontab case
-( crontab -l 2>/dev/null; echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*' ) | sudo crontab -
+(echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*' ) | sudo crontab -
 # Download and setup bash and zsh configs
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
