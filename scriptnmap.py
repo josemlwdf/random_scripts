@@ -50,10 +50,15 @@ def write_hosts_to_file(filename, hosts):
         for host in sorted(hosts):
             f.write(f"{host}\n")
 
+scanned_hosts = []
+
 def ctfenum_scan(file):
+    global scanned_hosts
     with open(file, 'r') as f:
         hosts = f.readlines()
     for host in hosts:
+        if host in scanned_hosts: continue
+        scanned_hosts.append(host)
         host = host.strip()
         if host:
             print(f'[!] Scanning {file.split("_")[0].upper()} Server: {host}')
