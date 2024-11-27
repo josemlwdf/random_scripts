@@ -41,12 +41,13 @@ echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/usern
 sudo chmod +x /usr/sbin/username-anarchy
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
 # Download and setup various scripts, checking for curl success
-SCRIPTS=("untar" "hist" "urlencode" "smbserver" "PowerShellBase64ReverseShell.py"
+SCRIPTS=("untar" "hist" "urlencode" "smbserver"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade")
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
 sudo chmod +x /usr/sbin/*
 # Add Kali repository
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
