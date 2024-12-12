@@ -78,6 +78,7 @@ curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
 echo https://dashboard.ngrok.com/get-started/your-authtoken
 echo "Ngrok Token:"
 read ntoken
+ngrok config add-authtoken $ntoken
 sudo ngrok config add-authtoken $ntoken
 # Generate SSH keys
 mkdir ~/.ssh
