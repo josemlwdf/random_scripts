@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo chown think:think /opt
-sudo chmod 777 /opt
+sudo chown think:think /opt 2>/dev/null
+sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
@@ -14,8 +14,8 @@ mkdir ~/CTF/OSCP/Play
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
-ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads
-sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads
+ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
+sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
 # Create an edit script
 echo 'notepad.exe $1' | sudo tee /usr/sbin/edit > /dev/null
 sudo chmod +x /usr/sbin/edit
