@@ -16,6 +16,7 @@ wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
 ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
 sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
+sudo ln -sf /usr/bin/google-chrome /usr/sbin/chrome 2>/dev/null
 # Create an edit script
 echo 'notepad.exe $1' | sudo tee /usr/sbin/edit > /dev/null
 sudo chmod +x /usr/sbin/edit
