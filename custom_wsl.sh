@@ -42,7 +42,7 @@ echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/usern
 sudo chmod +x /usr/sbin/username-anarchy
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
 # Download and setup various scripts, checking for curl success
-SCRIPTS=("untar" "hist" "urlencode" "smbserver"
+SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade")
 for script in "${SCRIPTS[@]}"; do
@@ -56,7 +56,7 @@ echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | su
 # Install other tools
 curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
-sudo apt install net-tools xxd steghide freerdp2-wayland responder mitmproxy stegsnow cupp openvpn unrar mariadb-client-core ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq ltrace sntp tftp-hpa -y
+sudo apt install fping net-tools xxd steghide freerdp2-wayland responder mitmproxy stegsnow cupp openvpn unrar mariadb-client-core ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq ltrace sntp tftp-hpa -y
 pipx ensurepath
 sudo pip install requests git-dumper pyftpdlib --break-system-packages
 # Download and configure additional files
