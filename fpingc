@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ "$1" = "" ];
+then
+	echo '[*] This is a "fping" wrapper.'
+	echo '[*] USAGE: fpingc SUBNET'
+	echo '[*] SUBNET = 192.168.0.1/24'
+	echo ''
+	fping --help
+else
+	echo '[*] Running " fping -a -4 -g -d -q -r 1' $1 '"'
+	echo '[*] -a, --alive        show targets that are alive'
+	echo '[*] -4, --ipv4         only ping IPv4 addresses'
+	echo '[*] -g, --generate     generate target list (only if no -f specified)'
+	echo '[*]                    (give start and end IP in the target list, or a CIDR address)'
+	echo '[*]                    (ex. fping -g 192.168.1.0 192.168.1.255 or fping -g 192.168.1.0/24)'
+	echo '[*] -d, --rdns         show targets by name (force reverse-DNS lookup)'
+	echo '[*] -q, --quiet        quiet (don"t show per-target/per-ping results)'
+	echo '[*] -r, --retry=N      number of retries (default: 3)'
+	echo '[*] Working...'
+	fping -a -4 -g -d -q -r 1 $1
+fi
