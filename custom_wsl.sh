@@ -48,6 +48,7 @@ SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc"
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
+curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh; sudo mv ./bin/bearer /usr/sbin/; rm -rf ./bin
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
 sudo chmod +x /usr/sbin/*
 # Add Kali repository
