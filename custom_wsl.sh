@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo sed -i '/^think:/ s/\/bin\/bash/\/bin\/zsh/' /etc/passwd
+sudo chsh -s /bin/zsh think
 sudo chown think:think /opt 2>/dev/null
 sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
@@ -94,7 +94,6 @@ echo 'Press Enter when the /opt folder is in place.'
 read
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
-sudo chsh -s /bin/zsh think
 rm -f custom_wsl.sh
 pipx install git+https://github.com/Pennyw0rth/NetExec
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
