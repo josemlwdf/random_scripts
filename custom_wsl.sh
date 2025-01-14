@@ -58,11 +58,11 @@ echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | su
 # Install other tools
 curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
-sudo apt install oracle-instantclient-sqlplus nmap fping net-tools cewl xxd steghide html2text cifs-utils freerdp2-wayland responder mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf pipx file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
+sudo apt install oracle-instantclient-sqlplus nmap fping net-tools cewl xxd steghide html2text cifs-utils freerdp2-wayland responder mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf x file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
 sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
 sudo nmap --script-updatedb
-pipx ensurepath
-sudo pip install requests git-dumper pyftpdlib --break-system-packages
+x ensurepath
+sudo pip install colorama requests git-dumper pyftpdlib --break-system-packages
 # Download and configure additional files
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker
