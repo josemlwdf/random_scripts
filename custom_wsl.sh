@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt update -y
 sudo chown think:think /opt 2>/dev/null
 sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
