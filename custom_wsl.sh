@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo chsh -s /bin/zsh think
-sudo chown think:think /opt 2>/dev/null
+sudo chsh -s /bin/zsh 1000
+sudo chown 1000:1000 /opt 2>/dev/null
 sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
 sudo touch ~/.hushlogin
