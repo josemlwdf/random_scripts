@@ -91,7 +91,8 @@ ssh-keygen -t rsa -b 4096
 # Instructions for the user
 echo '[!] Download the /opt folder backup from Mega'
 echo 'Press Enter when the /opt folder is in place.'
-read
+read timebreak
+sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
 rm -f custom_wsl.sh
