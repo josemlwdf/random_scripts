@@ -1,6 +1,7 @@
 #!/bin/bash
-sudo chsh -s /bin/zsh 1000
-sudo chown 1000:1000 /opt 2>/dev/null
+user=$(cat /etc/passwd | grep 1000 | awk -F : '{print $1}')
+sudo chsh -s /bin/zsh $user
+sudo chown $user:$user /opt 2>/dev/null
 sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
 sudo touch ~/.hushlogin
@@ -38,6 +39,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
+python -m pip install fierce --break-system-packages
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
 sudo chmod +x /usr/sbin/username-anarchy
