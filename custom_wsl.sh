@@ -15,6 +15,7 @@ done
 mkdir ~/CTF/OSCP/Play
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 cd /usr/sbin/; sudo wget -q https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py; sudo mv takeover.py takeover; sudo chmod +x takeover
+cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
 wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
 ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
