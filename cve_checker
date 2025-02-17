@@ -2,6 +2,7 @@
 
 import requests
 import json
+import sys
 
 def fetch_cve_data(cve_id):
     # Extract year and first two digits from CVE identifier
@@ -43,9 +44,18 @@ def format_cve_data(cve_data):
     for ref in cve_data.get('containers', {}).get('cna', {}).get('references', []):
         print(f" - {ref.get('url', 'N/A')}")
 
-# Example usage
-cve_id = "CVE-2020-10110"
-cve_data = fetch_cve_data(cve_id)
+def main():
+    # Check if the script is run with a CVE ID as an argument
+    if len(sys.argv) != 2:
+        print("Usage: cve_checker <CVE_ID>")
+        sys.exit(1)
+    
+    # Fetch the CVE data
+    cve_id = sys.argv[1]
+    cve_data = fetch_cve_data(cve_id)
+    
+    # Format and print the CVE data
+    format_cve_data(cve_data)
 
-# Format and print the CVE data
-format_cve_data(cve_data)
+if __main__ == "__main__":
+    main()
