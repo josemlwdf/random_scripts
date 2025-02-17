@@ -50,7 +50,7 @@ echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/usern
 sudo chmod +x /usr/sbin/username-anarchy
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
 # Download and setup various scripts, checking for curl success
-SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc"
+SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade")
 for script in "${SCRIPTS[@]}"; do
