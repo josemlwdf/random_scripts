@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import requests
+import json
+import sys
+
+def fetch_cve_data(cve_id):
+    # Extract year and first two digits from CVE identifier
+    year = cve_id.split('-')[1]
+    first_two_digits = cve_id.split('-')[2][:2]
+    
+    # Construct the URL
+    url = f"https://raw.githubusercontent.com/cisagov/vulnrichment/refs/heads/develop/{year}/{first_two_digits}xxx/{cve_id}.json"
+    
+    # Make the HTTP GET request
+    response = requests.get(url)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Process the data received as JSON
+        data = response.json()
+        return data
+    else:
+        # Handle the error
+        return {"error": f"Failed to fetch data for {cve_id}, status code: {response.status_code}"}
+
+def format_cve_data(cve_data):
+    if "error" in cve_data:
+        print(cve_data["error"])
+        return
+    print(f"Title: {cve_data.get('containers', {}).get('adp', [{}])[0].get('title', 'N/A')}")
+    print(f"\nCVE ID: {cve_data.get('cveMetadata', {}).get('cveId', 'N/A')}")
+    print(f"\nState: {cve_data.get('cveMetadata', {}).get('state', 'N/A')}")
+    print(f"\nDate Published: {cve_data.get('cveMetadata', {}).get('datePublished', 'N/A')}")
+    print(f"\nDescription: {cve_data.get('containers', {}).get('cna', {}).get('descriptions', [{}])[0].get('value', 'N/A')}")
+
+    # Extract and print metrics
+    metrics = cve_data.get('containers', {}).get('adp', [{}])[1].get('metrics', [{}])[0].get('other', {}).get('content', {}).get('options', [])
+    for metric in metrics:
+        for key, value in metric.items():
+            print(f"\n{key}: {value}")
+
+    print("\nReferences:")
+    for ref in cve_data.get('containers', {}).get('cna', {}).get('references', []):
+        print(f" - {ref.get('url', 'N/A')}")
+
+def main():
+    # Check if the script is run with a CVE ID as an argument
+    if len(sys.argv) != 2:
+        print("Usage: cve_checker <CVE_ID>")
+        sys.exit(1)
+    
+    # Fetch the CVE data
+    cve_id = sys.argv[1]
+    cve_data = fetch_cve_data(cve_id)
+    
+    # Format and print the CVE data
+    format_cve_data(cve_data)
+
+if __name__ == "__main__":
+    main()
