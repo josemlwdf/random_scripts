@@ -80,6 +80,7 @@ sudo curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/maste
 sudo chmod +x /usr/sbin/jwt_tool
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
+sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
 # Update locate database
 sudo updatedb
 # Install ngrok and configure it
