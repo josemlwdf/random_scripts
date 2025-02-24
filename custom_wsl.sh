@@ -47,8 +47,7 @@ sudo apt install python3-pip -y
 sudo python -m pip install fierce --break-system-packages
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
-sudo chmod +x /usr/sbin/username-anarchy
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
+
 # Download and setup various scripts, checking for curl success
 SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
@@ -57,8 +56,6 @@ for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
 curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh; sudo mv ./bin/bearer /usr/sbin/; rm -rf ./bin
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
-sudo chmod +x /usr/sbin/*
 # Add Kali repository
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
 echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
@@ -75,9 +72,13 @@ sudo pip install colorama requests git-dumper pyftpdlib --break-system-packages
 # Download and configure additional files
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker
-sudo chmod +x /usr/sbin/policy_checker
 sudo curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -o /usr/sbin/jwt_tool
-sudo chmod +x /usr/sbin/jwt_tool
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -o /usr/sbin/get_ip_info
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
+
+sudo chmod +x /usr/sbin/*
+
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
 sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
