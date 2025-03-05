@@ -7,4 +7,7 @@ echo '1- list sessions: session
 3- Get the subnets of the target: ifconfig
 4- Add a route on the proxy/relay: ip route add 192.168.0.0/24 dev ligolo
 5- Start the tunnel on the Server: start'
+echo ''
+echo 'Connect client:'
+echo './agent64 -connect IP:11601 --ignore-cert'
 sudo /opt/Ligolo/proxy -selfcert
