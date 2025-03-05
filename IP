@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ "$1" != "" ]; then
   echo "$1" > ~/.target_ip
+  ping -c 2 $1
 else
   cat ~/.target_ip
 fi
