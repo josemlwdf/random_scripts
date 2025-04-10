@@ -85,7 +85,7 @@ sudo chmod +x /usr/sbin/*
 
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
-sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
+
 # Update locate database
 sudo updatedb
 # Install ngrok and configure it
@@ -107,6 +107,7 @@ ssh-keygen -t rsa -b 4096
 echo '[!] Download the /opt folder backup from Mega'
 echo 'Press Enter when the /opt folder is in place.'
 read timebreak
+sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
