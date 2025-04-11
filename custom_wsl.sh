@@ -116,5 +116,4 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 pipx install git+https://github.com/Pennyw0rth/NetExec
-cd /opt; git clone https://github.com/lgandx/PCredz; cd PCredz; sudo docker build . -t pcredz; echo 'sudo docker run --net=host -v $(pwd):/opt/Pcredz -it pcredz' > /tmp/pcredz; sudo mv /tmp/pcredz /usr/sbin/pcredz; chmod +x /usr/sbin/pcredz
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
