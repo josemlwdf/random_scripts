@@ -118,6 +118,7 @@ sudo chmod +x /usr/sbin/kerbrute
 rm -f custom_wsl.sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
+export PATH="$HOME/.cargo/bin:$PATH"
 source ~/.zshrc
 pipx install git+https://github.com/Pennyw0rth/NetExec
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
