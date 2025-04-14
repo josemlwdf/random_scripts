@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Launch script oneliner
+# nano script;chmod +x script;./script
+
 sudo apt update -y
 user=$(cat /etc/passwd | grep 1000 | awk -F : '{print $1}')
 sudo chsh -s /bin/zsh $user
