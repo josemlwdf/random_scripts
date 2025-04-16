@@ -115,6 +115,7 @@ sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
+cd /opt; git clone https://github.com/lgandx/PCredz; cd PCredz; sudo docker build . -t pcredz; echo 'sudo docker run --net=host -v $(pwd):/opt/Pcredz -it pcredz' > /tmp/pcredz; sudo mv /tmp/pcredz /usr/sbin/pcredz; chmod +x /usr/sbin/pcredz
 rm -f custom_wsl.sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
