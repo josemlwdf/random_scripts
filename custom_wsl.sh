@@ -69,7 +69,7 @@ echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | su
 # Install other tools
 curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
-sudo apt install oracle-instantclient-sqlplus krb5-user nmap subfinder stegseek fping pkg-config libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa freerdp2-wayland responder mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
+sudo apt install oracle-instantclient-sqlplus krb5-user nmap subfinder stegseek fping pkg-config imagemagick libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa freerdp2-wayland responder mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
 cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
 sudo ln -s /opt/subbrute/subbrute.py /usr/sbin/subbrute
 sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
