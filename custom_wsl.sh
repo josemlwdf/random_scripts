@@ -51,7 +51,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
-sudo python -m pip install fierce --break-system-packages
+sudo python -m pip install fierce tabulate colorama requests git-dumper pyftpdlib requests --break-system-packages
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
 
@@ -75,7 +75,6 @@ sudo ln -s /opt/subbrute/subbrute.py /usr/sbin/subbrute
 sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
 sudo nmap --script-updatedb
 pipx ensurepath
-sudo pip install colorama requests git-dumper pyftpdlib --break-system-packages
 pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git
 # Download and configure additional files
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
