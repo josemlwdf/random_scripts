@@ -52,6 +52,8 @@ sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
 sudo python -m pip install fierce tabulate colorama requests git-dumper pyftpdlib requests --break-system-packages
+
+sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
 
