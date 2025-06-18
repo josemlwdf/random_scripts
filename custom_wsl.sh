@@ -23,6 +23,7 @@ curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/ma
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng
 
 cd /usr/sbin/; sudo wget -q https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py; sudo mv takeover.py takeover; sudo chmod +x takeover
+cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
 cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
 cd /usr/sbin; sudo wget https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks; sudo chmod +x swaks
 
