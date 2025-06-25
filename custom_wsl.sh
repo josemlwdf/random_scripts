@@ -19,13 +19,6 @@ for platform in "${PLATFORMS[@]}"; do
 done 
 mkdir ~/CTF/OSCP/Play
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
-curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -o /opt/docker.zip
-curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng
-
-cd /usr/sbin/; sudo wget -q https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py; sudo mv takeover.py takeover; sudo chmod +x takeover
-cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
-cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
-cd /usr/sbin; sudo wget https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks; sudo chmod +x swaks
 
 wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
@@ -70,7 +63,7 @@ curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.s
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
 echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
 # Install other tools
-curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
 sudo apt install oracle-instantclient-sqlplus krb5-user nmap gdb subfinder stegseek fping pkg-config hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa freerdp2-wayland responder mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
 # Config for gdb
@@ -84,6 +77,7 @@ sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-in
 sudo nmap --script-updatedb
 pipx ensurepath
 pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git
+
 # Download and configure additional files
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker
@@ -91,6 +85,13 @@ sudo curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/maste
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -o /usr/sbin/get_ip_info
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -o /opt/docker.zip
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng
+sudo curl -s https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -o /usr/sbin/takeover; sudo chmod +x takeover
+cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
+cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
+sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks
+sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster
 
 sudo chmod +x /usr/sbin/*
 
