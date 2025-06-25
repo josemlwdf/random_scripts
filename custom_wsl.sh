@@ -93,7 +93,7 @@ cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enu
 sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks
 sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http
-sudo curl -s https://raw.githubusercontent.com/lgandx/PCredz/refs/heads/master/Pcredz -o /usr/sbin/pcredz
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz
 
 sudo chmod +x /usr/sbin/*
 
