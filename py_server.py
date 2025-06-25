@@ -11,7 +11,7 @@ class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
             f.write(post_data)
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(b"File uploaded successfully.\n")
+        self.wfile.write(b"OK.\n")
 
 def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=80):
     server_address = ('', port)
