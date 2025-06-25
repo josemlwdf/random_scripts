@@ -45,7 +45,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
-sudo python -m pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz --break-system-packages
+sudo python -m pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz Cython python-libpcap --break-system-packages
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper
 # Create username-anarchy script
@@ -65,7 +65,7 @@ echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | su
 # Install other tools
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
-sudo apt install oracle-instantclient-sqlplus krb5-user nmap gdb subfinder stegseek fping pkg-config hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa freerdp2-wayland responder mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
+sudo apt install oracle-instantclient-sqlplus krb5-user nmap gdb subfinder stegseek fping pkg-config hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa freerdp2-wayland responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace sntp tftp-hpa -y
 # Config for gdb
 echo 'set disassembly-flavor intel' > ~/.gdbinit
 curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
@@ -93,6 +93,7 @@ cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enu
 sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks
 sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http
+sudo curl -s https://raw.githubusercontent.com/lgandx/PCredz/refs/heads/master/Pcredz -o /usr/sbin/pcredz
 
 sudo chmod +x /usr/sbin/*
 
@@ -124,7 +125,6 @@ sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
-cd /opt; git clone https://github.com/lgandx/PCredz; cd PCredz; sudo docker build . -t pcredz; echo 'sudo docker run --net=host -v /opt/PCredz:/opt/PCredz -it pcredz ./Pcredz "$@"' > /tmp/pcredz; sudo mv /tmp/pcredz /usr/sbin/pcredz; chmod +x /usr/sbin/pcredz
 rm -f custom_wsl.sh
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
