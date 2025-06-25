@@ -45,7 +45,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
-sudo python -m pip install fierce tabulate colorama requests git-dumper pyftpdlib requests --break-system-packages
+sudo python -m pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz --break-system-packages
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper
 # Create username-anarchy script
