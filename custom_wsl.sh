@@ -96,8 +96,9 @@ sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/hea
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser
 
+# curlie
 curl -sS https://webinstall.dev/curlie | bash
-
+# bat
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb; sudo rm -f ./bat_0.25.0_amd64.deb
 
 sudo chmod +x /usr/sbin/*
