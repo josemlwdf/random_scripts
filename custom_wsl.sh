@@ -45,7 +45,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
-sudo python -m pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz Cython python-libpcap --break-system-packages
+sudo pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz scapy Cython python-libpcap --break-system-packages
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper
 # Create username-anarchy script
@@ -94,6 +94,7 @@ sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o
 sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser
 
 sudo chmod +x /usr/sbin/*
 
