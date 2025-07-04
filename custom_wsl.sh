@@ -20,6 +20,9 @@ done
 mkdir ~/CTF/OSCP/Play
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 
+# INSTALL GEMINI
+sudo apt install nodejs npm -y && sudo npm install -g @google/gemini-cli
+
 wusername='josel'
 # Create symlinks to Windows Downloads folder, force if they exist
 ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
