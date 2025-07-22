@@ -105,8 +105,6 @@ sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/hea
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper
 
-# curlie
-curl -sS https://webinstall.dev/curlie | bash
 # bat
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb; sudo rm -f ./bat_0.25.0_amd64.deb
 
@@ -146,4 +144,8 @@ echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 export PATH="$HOME/.cargo/bin:$PATH"
 source ~/.zshrc
 pipx install git+https://github.com/Pennyw0rth/NetExec
+
+# curlie
+curl -sS https://webinstall.dev/curlie | bash
+
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
