@@ -3,7 +3,7 @@
 # Launch script oneliner
 # Only works in kali-linuw on WSL
 # DO NOT USE SUDO
-# nano script;chmod +x script;./script
+# echo ''>script;nano script;chmod +x script;./script
 
 set -euo pipefail
 
