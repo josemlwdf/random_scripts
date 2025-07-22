@@ -66,7 +66,7 @@ SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
-curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh; sudo mv ./bin/bearer /usr/sbin/; rm -rf ./bin
+sudo curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh; sudo mv ./bin/bearer /usr/sbin/; sudo rm -rf ./bin
 # Add Kali repository
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
 echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
