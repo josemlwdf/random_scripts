@@ -74,7 +74,7 @@ done
 # Install other tools
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
-sudo apt install oracle-instantclient-sqlplus krb5-user nmap gdb subfinder stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa freerdp2-wayland responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
+sudo apt install oracle-instantclient-sqlplus krb5-user nmap gdb subfinder stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
 # Config for gdb
 echo 'set disassembly-flavor intel' > ~/.gdbinit
 curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
