@@ -1,29 +1,34 @@
 #!/bin/bash
 
 # Launch script oneliner
+# Only works in kali-linuw on WSL
+# DO NOT USE SUDO
 # nano script;chmod +x script;./script
 
+set -euo pipefail
+
 sudo apt update -y
-user=$(cat /etc/passwd | grep 1000 | awk -F : '{print $1}')
+user=$(awk -F: '$3 == 1000 {print $1}' /etc/passwd)
 sudo chsh -s /bin/zsh $user
 sudo chown $user:$user /opt 2>/dev/null
 sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
 sudo touch ~/.hushlogin
 sudo touch /root/.hushlogin
-mkdir ~/CTF
+mkdir -p ~/CTF
 PLATFORMS=("HackMyVM" "HTB" "DockerLabs" "OSCP" "OTW" "THM"
          "VulnHub" "Vulnyx")
 for platform in "${PLATFORMS[@]}"; do
-    mkdir ~/CTF/$platform
+    mkdir -p ~/CTF/$platform
 done 
-mkdir ~/CTF/OSCP/Play
+mkdir -p ~/CTF/OSCP/Play
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 
 # INSTALL GEMINI
 sudo apt install nodejs npm -y && sudo npm install -g @google/gemini-cli
 
-wusername='josel'
+echo "Your Windows Username:"
+read wusername
 # Create symlinks to Windows Downloads folder, force if they exist
 ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
 sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
@@ -135,7 +140,7 @@ sudo curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
-rm -f custom_wsl.sh
+rm -f $0
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 export PATH="$HOME/.cargo/bin:$PATH"
