@@ -7,6 +7,10 @@
 
 set -euo pipefail
 
+# Add Kali repository
+echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
+echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
+
 sudo apt update -y
 user=$(awk -F: '$3 == 1000 {print $1}' /etc/passwd)
 sudo chsh -s /bin/zsh $user
@@ -66,9 +70,7 @@ SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
-# Add Kali repository
-echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
-echo 'deb-src http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list > /dev/null
+
 # Install other tools
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Install various packages
