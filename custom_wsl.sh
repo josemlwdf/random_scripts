@@ -96,7 +96,7 @@ sudo curl -s https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/head
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -o /opt/docker.zip
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng
-sudo curl -s https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -o /usr/sbin/takeover; sudo chmod +x takeover
+sudo curl -s https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -o /usr/sbin/takeover; sudo chmod +x /usr/sbin/takeover
 cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
 cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
 sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks
