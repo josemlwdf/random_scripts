@@ -149,6 +149,7 @@ curl -sS https://webinstall.dev/curlie | bash
 echo removing installation garbage
 sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
+sudo rm $0
 
 # Update locate database
 echo updating file database
