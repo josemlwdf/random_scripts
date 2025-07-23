@@ -147,6 +147,7 @@ pipx install git+https://github.com/Pennyw0rth/NetExec
 curl -sS https://webinstall.dev/curlie | bash
 
 echo removing installation garbage
+sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
 
 # Update locate database
