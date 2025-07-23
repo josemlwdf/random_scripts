@@ -113,9 +113,6 @@ sudo chmod +x /usr/sbin/*
 
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
-
-# Update locate database
-sudo updatedb
 # Install ngrok and configure it
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
   sudo gpg --dearmor -o /etc/apt/keyrings/ngrok.gpg && \
@@ -149,4 +146,9 @@ pipx install git+https://github.com/Pennyw0rth/NetExec
 # curlie
 curl -sS https://webinstall.dev/curlie | bash
 
+echo removing installation garbage
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
+
+# Update locate database
+echo updating file database
+sudo updatedb
