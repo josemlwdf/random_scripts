@@ -71,8 +71,14 @@ for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
 
-# Install other tools
+# Install CTFEnum
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
+# Download AccessChk
+mkdir -p /opt/Windows
+sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip -o /opt/Windows/AccessChk.zip
+cd /opt/Windows
+untar AccessChk.zip
+rm -f AccessChk.zip
 # Install various packages
 sudo apt install oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
 # Config for gdb
@@ -154,5 +160,6 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
