@@ -119,6 +119,13 @@ sudo chmod +x /usr/sbin/*
 
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
+
+# Install gcloud-cli
+cd /opt
+sudo curl -s -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz && sudo untar google-cloud-cli-linux-x86_64.tar.gz && ./google-cloud-sdk/install.sh && sudo ./google-cloud-sdk/install.sh
+sudo rm google-cloud-cli-linux-x86_64.tar.gz
+
+
 # Install ngrok and configure it
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
   sudo gpg --dearmor -o /etc/apt/keyrings/ngrok.gpg && \
@@ -160,6 +167,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
