@@ -79,6 +79,8 @@ sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Acc
 cd /opt/Windows
 sudo untar AccessChk.zip
 sudo rm -f AccessChk.zip
+
+sudo curl -s https://github.com/josemlwdf/SeDebugPrivilege/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe -o SeDebugPrivilegeExploit.exe
 # Install various packages
 sudo apt install oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
 # Config for gdb
@@ -167,6 +169,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
