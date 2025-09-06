@@ -1,5 +1,5 @@
 #!/bin/bash
-sleep $1
+sleep $1 2>/dev/null
 for i in {1..5}; do
   echo -ne "\033]0;⚠️ ALERT ⚠️\a"
   echo -e "\a"
