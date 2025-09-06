@@ -66,7 +66,7 @@ echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/usern
 # Download and setup various scripts, checking for curl success
 SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
-         "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade")
+         "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade" "beep")
 for script in "${SCRIPTS[@]}"; do
     sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
 done
@@ -170,6 +170,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
