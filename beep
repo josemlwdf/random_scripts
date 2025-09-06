@@ -1,0 +1,9 @@
+#!/bin/bash
+sleep $1
+for i in {1..5}; do
+  echo -ne "\033]0;⚠️ ALERT ⚠️\a"
+  echo -e "\a"
+  sleep 1
+  echo -ne "\033]0;          \a"
+  sleep 0.3
+done
