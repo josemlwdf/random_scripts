@@ -71,9 +71,9 @@ done
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Download AccessChk
 mkdir -p /opt/Windows
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip -o /opt/Windows/AccessChk.zip 2>/dev/null
+sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
 cd /opt/Windows
-sudo untar AccessChk.zip 2>/dev/null
+sudo tar -zxvf AccessChk.zip 2>/dev/null
 sudo rm -f AccessChk.zip 2>/dev/null
 
 sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe -o SeDebugPrivilegeExploit.exe 2>/dev/null
@@ -175,6 +175,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
