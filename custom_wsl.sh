@@ -47,11 +47,7 @@ ln -sf /dev/null ~/.wget-hsts
 ln -sf /dev/null ~/.python_history
 # Append cron jobs safely, handling missing crontab case
 (echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*' ) | sudo crontab -
-# Download and setup bash and zsh configs
-curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
-curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
-sudo cp ~/.bashrc /root/.bashrc 2>/dev/null
-sudo cp ~/.zshrc /root/.zshrc 2>/dev/null
+
 sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
 # Install Git
 sudo apt install git -y
@@ -119,6 +115,9 @@ sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/hea
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
 
+# curlie
+curl -sS https://webinstall.dev/curlie | bash
+
 # bat
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb 2>/dev/null; sudo rm -f ./bat_0.25.0_amd64.deb 2>/dev/null
 
@@ -157,14 +156,16 @@ sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
 rm -f $0
+# Download and setup bash and zsh configs
+curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
+curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
+sudo cp ~/.bashrc /root/.bashrc 2>/dev/null
+sudo cp ~/.zshrc /root/.zshrc 2>/dev/null
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 export PATH="$HOME/.cargo/bin:$PATH"
 source ~/.zshrc
 pipx install git+https://github.com/Pennyw0rth/NetExec
-
-# curlie
-curl -sS https://webinstall.dev/curlie | bash
 
 echo removing installation garbage
 sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
@@ -174,6 +175,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
