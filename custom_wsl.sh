@@ -50,8 +50,8 @@ ln -sf /dev/null ~/.python_history
 # Download and setup bash and zsh configs
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
-sudo cp ~/.bashrc /root/.bashrc
-sudo cp ~/.zshrc /root/.zshrc
+sudo cp ~/.bashrc /root/.bashrc 2>/dev/null
+sudo cp ~/.zshrc /root/.zshrc 2>/dev/null
 sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
 # Install Git
 sudo apt install git -y
@@ -59,7 +59,7 @@ sudo apt install git -y
 sudo apt install python3-pip -y
 sudo pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz scapy Cython --break-system-packages
 
-sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper
+sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null
 # Create username-anarchy script
 echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
 
@@ -68,64 +68,64 @@ SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade" "beep")
 for script in "${SCRIPTS[@]}"; do
-    sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script
+    sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script 2>/dev/null
 done
 
 # Install CTFEnum
 sudo curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
 # Download AccessChk
 mkdir -p /opt/Windows
-sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip -o /opt/Windows/AccessChk.zip
+sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip -o /opt/Windows/AccessChk.zip 2>/dev/null
 cd /opt/Windows
-sudo untar AccessChk.zip
-sudo rm -f AccessChk.zip
+sudo untar AccessChk.zip 2>/dev/null
+sudo rm -f AccessChk.zip 2>/dev/null
 
-sudo curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe -o SeDebugPrivilegeExploit.exe
-sudo curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe -o SeTakeOwnershipPrivilegeExploit.exe
-suco curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz -o SeLoadDriverPrivilegeExploit.tar.gz
+sudo curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe -o SeDebugPrivilegeExploit.exe 2>/dev/null
+sudo curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe -o SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
+suco curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz -o SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
 # Install various packages
 sudo apt install oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
 
-sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text
+sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null
 
 # Config for gdb
 echo 'set disassembly-flavor intel' > ~/.gdbinit
-curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 
 # Subbrute
 cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
-sudo ln -s /opt/subbrute/subbrute.py /usr/sbin/subbrute
+sudo ln -s /opt/subbrute/subbrute.py /usr/sbin/subbrute 2>/dev/null
 sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
-sudo nmap --script-updatedb
-pipx ensurepath
-pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git
+sudo nmap --script-updatedb 2>/dev/null
+pipx ensurepath 2>/dev/null
+pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git 2>/dev/null
 
 # Download and configure additional files
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker
-sudo curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -o /usr/sbin/jwt_tool
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -o /usr/sbin/get_ip_info
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -o /opt/docker.zip
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng
-sudo curl -s https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -o /usr/sbin/takeover; sudo chmod +x /usr/sbin/takeover
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -o /usr/sbin/jwt_tool 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -o /usr/sbin/get_ip_info 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -o /opt/docker.zip 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -o /usr/sbin/takeover; sudo chmod +x /usr/sbin/takeover 2>/dev/null
 cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
 cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
-sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks
-sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser
-sudo curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper
+sudo curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks 2>/dev/null
+sudo curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
+sudo curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
 
 # bat
-sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb; sudo rm -f ./bat_0.25.0_amd64.deb
+sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb 2>/dev/null; sudo rm -f ./bat_0.25.0_amd64.deb 2>/dev/null
 
-sudo chmod +x /usr/sbin/*
+sudo chmod +x /usr/sbin/* 2>/dev/null
 
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
-sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/
+sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/ 2>/dev/null
 
 # Install gcloud-cli
 cd /opt
@@ -174,6 +174,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
