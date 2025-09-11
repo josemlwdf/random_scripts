@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Launch script oneliner
-# Only works in kali-linuw on WSL
+# Launch script oneliner and put the content of the hole script on it
+# Made for kali-linux on WSL
 # DO NOT USE SUDO
 # echo ''>script;nano script;chmod +x script;bash -x ./script
 
@@ -126,12 +126,6 @@ sudo chmod +x /usr/sbin/* 2>/dev/null
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
 sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/ 2>/dev/null
 
-# Install gcloud-cli
-cd /opt
-sudo /usr/bin/curl -s -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz && sudo untar google-cloud-cli-linux-x86_64.tar.gz && sudo ./google-cloud-sdk/install.sh
-sudo rm google-cloud-cli-linux-x86_64.tar.gz
-
-
 # Install ngrok and configure it
 curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
   sudo gpg --dearmor -o /etc/apt/keyrings/ngrok.gpg && \
@@ -164,7 +158,6 @@ sudo cp ~/.zshrc /root/.zshrc 2>/dev/null
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 export PATH="$HOME/.cargo/bin:$PATH"
-source ~/.zshrc
 pipx install git+https://github.com/Pennyw0rth/NetExec
 
 echo removing installation garbage
@@ -172,9 +165,15 @@ sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
 sudo rm $0
 
+# Install gcloud-cli
+cd /opt
+sudo /usr/bin/curl -s -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz && sudo untar google-cloud-cli-linux-x86_64.tar.gz && sudo ./google-cloud-sdk/install.sh
+sudo rm google-cloud-cli-linux-x86_64.tar.gz
+
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
