@@ -3,7 +3,7 @@
 # Launch script oneliner
 # Only works in kali-linuw on WSL
 # DO NOT USE SUDO
-# echo ''>script;nano script;chmod +x script;./script
+# echo ''>script;nano script;chmod +x script;bash -x ./script
 
 set -euo pipefail
 
@@ -175,6 +175,7 @@ sudo rm $0
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
