@@ -175,9 +175,13 @@ sudo rm google-cloud-cli-linux-x86_64.tar.gz
 echo 'BONUS: Launch this Script Powershell as Administrator on Windows to redirect the connections to your common Windows ports to your WSL.'
 echo ' -> https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/portforward.ps1'
 
+# Mount G drive on WSL
+$(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv: $mountpoint drvfs defaults 0 0" | sudo tee -a /etc/fstab; sudo mkdir -p "$mountpoint"; sudo mount -t drvfs "$drv:" "$mountpoint"; sudo systemctl daemon-reload)
+
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
