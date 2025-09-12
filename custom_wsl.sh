@@ -36,7 +36,7 @@ read wusername
 # Create symlinks to Windows Downloads folder, force if they exist
 ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
 sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
-sudo ln -sf /usr/bin/google-chrome /usr/sbin/chrome 2>/dev/null
+
 # Create an edit script
 echo 'notepad.exe $1' | sudo tee /usr/sbin/edit > /dev/null
 sudo chmod +x /usr/sbin/edit
@@ -80,7 +80,7 @@ sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/rele
 sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe -o SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
 suco /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz -o SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
 # Install various packages
-sudo apt install oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
+sudo apt install libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpango-1.0-0 libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
 
 sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null
 
@@ -146,6 +146,9 @@ echo '[!] Download the /opt folder backup from Mega'
 echo 'Press Enter when the /opt folder is in place.'
 read timebreak
 sudo /usr/bin/curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
+sudo ln -sf /usr/sbin/chrome /opt/google/chrome/google-chrome 2>/dev/null
+echo '/usr/sbin/chrome --proxy-server="http://localhost:8080"' > /tmp/chrome-proxy && chmod +x /tmp/chrome-proxy
+sudo mv /tmp/chrome-proxy /usr/sbin/chrome-proxy
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
@@ -173,6 +176,7 @@ sudo rm google-cloud-cli-linux-x86_64.tar.gz
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
