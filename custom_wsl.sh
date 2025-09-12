@@ -152,7 +152,7 @@ sudo mv /tmp/chrome-proxy /usr/sbin/chrome-proxy
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
-rm -f $0
+
 # Download and setup bash and zsh configs
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
@@ -166,16 +166,19 @@ pipx install git+https://github.com/Pennyw0rth/NetExec
 echo removing installation garbage
 sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
-sudo rm $0
 
 # Install gcloud-cli
 cd /opt
 sudo /usr/bin/curl -s -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz && sudo untar google-cloud-cli-linux-x86_64.tar.gz && sudo ./google-cloud-sdk/install.sh
 sudo rm google-cloud-cli-linux-x86_64.tar.gz
 
+echo 'BONUS: Launch this Script Powershell as Administrator on Windows to redirect the connections to your common Windows ports to your WSL.'
+echo ' -> https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/portforward.ps1'
+
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
