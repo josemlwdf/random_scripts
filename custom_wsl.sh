@@ -80,6 +80,14 @@ sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/rele
 sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe -o SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz -o SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/ServerOperators.exe -o ServerOperators.exe 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2021-36934.exe -o CVE-2021-36934.exe 2>/dev/null
+sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/ExploitWindowsPrivileges/refs/heads/main/Kernel/CVE-2021-1675.ps1 -o CVE-2021-1675.ps1 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2020-0668.tar.gz -o CVE-2020-0668.tar.gz 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpChrome.exe -o SharpChrome.exe 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpUp.exe -o SharpUp.exe 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Seatbelt.exe -o Seatbelt.exe 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Watson.exe -o Watson.exe 2>/dev/null
+
 # Install various packages
 sudo apt install libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpango-1.0-0 libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
 
@@ -182,6 +190,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
