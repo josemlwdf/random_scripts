@@ -125,6 +125,7 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null
 
 # curlie
 curl -sS https://webinstall.dev/curlie | bash
@@ -192,6 +193,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
