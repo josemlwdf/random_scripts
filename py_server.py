@@ -33,7 +33,7 @@ class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
         # Call the parent handler to serve files normally
         super().do_GET()
 
-def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=8000):
+def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=80):
     server_address = ('', port)
     httpd = server_class(server_address, handler_class)
     print(f"Serving HTTP on port {port} (GET to list/download, POST to upload)...")
