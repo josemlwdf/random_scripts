@@ -36,29 +36,29 @@ echo "Your Windows Username:"
 read wusername
 # Create symlinks to Windows Downloads folder, force if they exist
 `ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
-sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
+sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null`
 
 # Create an edit script
 echo 'notepad.exe $1' | sudo tee /usr/sbin/edit 2>/dev/null
-sudo chmod +x /usr/sbin/edit
+`sudo chmod +x /usr/sbin/edit
 # Redirect history and other files to /dev/null
 ln -sf /dev/null ~/.lesshst
 ln -sf /dev/null ~/.viminfo
 ln -sf /dev/null ~/.wget-hsts
 ln -sf /dev/null ~/.python_history
 # Append cron jobs safely, handling missing crontab case
-(echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*' ) | sudo crontab -`
+(echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*' ) | sudo crontab -
 
-`sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
+sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
 # Install Git
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
 sudo pip3 install fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz scapy Cython --break-system-packages
 
-sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null
+sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null`
 # Create username-anarchy script
-echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy 2>/dev/null`
+echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy 2>/dev/null
 
 # Download and setup various scripts, checking for /usr/bin/curl success
 `SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
@@ -233,5 +233,6 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
