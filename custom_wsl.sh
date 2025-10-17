@@ -29,16 +29,17 @@ mkdir -p ~/CTF/OSCP/Play
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
 
 # INSTALL GEMINI
-sudo apt install nodejs npm -y && sudo npm install -g @google/gemini-cli
+sudo apt install nodejs npm -y
+sudo npm install -g @google/gemini-cli
 
 echo "Your Windows Username:"
 read wusername
 # Create symlinks to Windows Downloads folder, force if they exist
-ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
+`ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
 sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
 
 # Create an edit script
-echo 'notepad.exe $1' | sudo tee /usr/sbin/edit > /dev/null
+echo 'notepad.exe $1' | sudo tee /usr/sbin/edit 2>/dev/null
 sudo chmod +x /usr/sbin/edit
 # Redirect history and other files to /dev/null
 ln -sf /dev/null ~/.lesshst
@@ -46,9 +47,9 @@ ln -sf /dev/null ~/.viminfo
 ln -sf /dev/null ~/.wget-hsts
 ln -sf /dev/null ~/.python_history
 # Append cron jobs safely, handling missing crontab case
-(echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*' ) | sudo crontab -
+(echo '10 * * * * /usr/sbin/backup'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*' ) | sudo crontab -`
 
-sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
+`sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
 # Install Git
 sudo apt install git -y
 # Install PIP
@@ -57,25 +58,25 @@ sudo pip3 install fierce tabulate colorama requests git-dumper pyftpdlib request
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null
 # Create username-anarchy script
-echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy 2>/dev/null
+echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy 2>/dev/null`
 
 # Download and setup various scripts, checking for /usr/bin/curl success
-SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
+`SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
          "shells" "pyftplibd" "ligolox" "IP" "create" "home" "ips" "http" "fix_zsh"
          "academy" "backup" "thm" "htb" "offsec" "ncx" "upgrade" "beep")
 for script in "${SCRIPTS[@]}"; do
     sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/$script -o /usr/sbin/$script 2>/dev/null
-done
+done`
 
 # Install CTFEnum
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
+`sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash`
 
-mkdir -p /opt/Windows
+`mkdir -p /opt/Windows
 cd /opt/Windows
 
 # Download AccessChk
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
-sudo unzip -x AccessChk.zip 2>/dev/null
+sudo unzip AccessChk.zip 2>/dev/null
 sudo rm -f AccessChk.zip 2>/dev/null
 
 sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe -o SeDebugPrivilegeExploit.exe 2>/dev/null
@@ -94,10 +95,10 @@ sudo /usr/bin/curl -s https://github.com/AlessandroZ/LaZagne/releases/download/v
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cmd.exe -o cmd.exe 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/lnk_creator.ps1 -o lnk_creator.ps1 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/hhupd.exe -o hhupd.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe -o snaffler.exe 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe -o snaffler.exe 2>/dev/null`
 
 # Install various packages
-sudo apt install golang libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpango-1.0-0 libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y
+`sudo apt install --ignore-missing golang libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpango-1.0-0 libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y`
 
 sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null
 
@@ -105,19 +106,19 @@ sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null
 go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness /usr/sbin
 
 # Config for gdb
-echo 'set disassembly-flavor intel' > ~/.gdbinit
-curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+`echo 'set disassembly-flavor intel' > ~/.gdbinit
+curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit`
 
 # Subbrute
-cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
+`cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
 sudo ln -s /opt/subbrute/subbrute.py /usr/sbin/subbrute 2>/dev/null
 sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
 sudo nmap --script-updatedb 2>/dev/null
 pipx ensurepath 2>/dev/null
-pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git 2>/dev/null
+pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git 2>/dev/null`
 
 # Download and configure additional files
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml 2>/dev/null
+`sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -o /usr/sbin/jwt_tool 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode 2>/dev/null
@@ -134,25 +135,22 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null
-
-# curlie
-curl -sS https://webinstall.dev/curlie | bash
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null`
 
 # bat
-sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb 2>/dev/null; sudo rm -f ./bat_0.25.0_amd64.deb 2>/dev/null
+`sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb 2>/dev/null; sudo rm -f ./bat_0.25.0_amd64.deb 2>/dev/null
 
 sudo chmod +x /usr/sbin/* 2>/dev/null
 
 sudo untar /usr/share/seclists/Passwords/Leaked-Databases/rockyou.txt.tar.gz
-sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/ 2>/dev/null
+sudo mv rockyou.txt /usr/share/seclists/Passwords/Leaked-Databases/ 2>/dev/null`
 
 # Install ngrok and configure it
-curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
+`curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | \
   sudo gpg --dearmor -o /etc/apt/keyrings/ngrok.gpg && \
   echo "deb [signed-by=/etc/apt/keyrings/ngrok.gpg] https://ngrok-agent.s3.amazonaws.com buster main" | \
   sudo tee /etc/apt/sources.list.d/ngrok.list && \
-  sudo apt update -y && sudo apt install ngrok -y
+  sudo apt update -y && sudo apt install ngrok -y`
 # Prompt for Ngrok token
 echo https://dashboard.ngrok.com/get-started/your-authtoken
 echo "Ngrok Token:"
@@ -166,22 +164,22 @@ ssh-keygen -t rsa -b 4096
 echo '[!] Download the /opt folder backup from Mega'
 echo 'Press Enter when the /opt folder is in place.'
 read timebreak
-sudo /usr/bin/curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
+`sudo /usr/bin/curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
 sudo ln -sf /opt/google/chrome/chrome /usr/sbin/chrome 2>/dev/null
 echo '/usr/sbin/chrome --proxy-server="http://localhost:8080"' > /tmp/chrome-proxy && chmod +x /tmp/chrome-proxy
 sudo mv /tmp/chrome-proxy /usr/sbin/chrome-proxy
 sudo chmod +x -R /opt/*
 sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
-sudo chmod +x /usr/sbin/kerbrute
+sudo chmod +x /usr/sbin/kerbrute`
 
 # Download and setup bash and zsh configs
-curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
+`curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
 sudo cp ~/.bashrc /root/.bashrc 2>/dev/null
 sudo cp ~/.zshrc /root/.zshrc 2>/dev/null
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"`
 pipx install git+https://github.com/Pennyw0rth/NetExec
 
 echo removing installation garbage
@@ -196,9 +194,13 @@ sudo rm google-cloud-cli-linux-x86_64.tar.gz
 echo 'BONUS: Launch this Script Powershell as Administrator on Windows to redirect the connections to your common Windows ports to your WSL.'
 echo ' -> https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/portforward.ps1'
 
+# curlie
+`curl -sS https://webinstall.dev/curlie | bash`
+
 # Mount G drive on WSL
 $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv: $mountpoint drvfs defaults 0 0" | sudo tee -a /etc/fstab; sudo mkdir -p "$mountpoint"; sudo mount -t drvfs "$drv:" "$mountpoint"; sudo systemctl daemon-reload)
 
 # Update locate database
 echo updating file database
 sudo updatedb
+
