@@ -57,7 +57,7 @@ sudo pip3 install fierce tabulate colorama requests git-dumper pyftpdlib request
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null
 # Create username-anarchy script
-echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy > /dev/null
+echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy 2>/dev/null
 
 # Download and setup various scripts, checking for /usr/bin/curl success
 SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
@@ -202,22 +202,3 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
