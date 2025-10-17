@@ -58,7 +58,7 @@ sudo pip3 install fierce tabulate colorama requests git-dumper pyftpdlib request
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null
 # Create username-anarchy script
-echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy 2>/dev/null
+echo 'ruby /opt/username-anarchy/username-anarchy $@' | sudo tee /usr/sbin/username-anarchy >/dev/null
 
 # Download and setup various scripts, checking for /usr/bin/curl success
 SCRIPTS=("untar" "hist" "urlencode" "smbserver" "fpingc" "cve_checker"
@@ -73,6 +73,8 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/i
 
 mkdir -p /opt/Windows
 cd /opt/Windows
+
+sudo apt install unzip 
 
 # Download AccessChk
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
@@ -233,6 +235,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
