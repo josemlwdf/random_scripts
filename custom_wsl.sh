@@ -98,7 +98,37 @@ sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe -o snaffler.exe 2>/dev/null`
 
 # Install various packages
-`sudo apt install --ignore-missing golang libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpango-1.0-0 libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace ntpsec-ntpdig tftp-hpa -y`
+PKGS=(
+golang libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpango-1.0-0
+libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user
+nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick
+traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils
+medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar
+mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap
+john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier
+enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace
+ntpsec-ntpdig tftp-hpa
+)
+
+for pkg in "${PKGS[@]}"; do
+  printf '\n=== Installing: %s ===\n' "$pkg"
+  if sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends --ignore-missing "$pkg"; then
+    printf 'OK: %s\n' "$pkg"
+  else
+    printf 'FAILED: %s (logged)\n' "$pkg"
+    echo "$pkg" >> failed_packages.txt
+  fi
+done
+
+# Try to fix unresolved deps at the end
+sudo apt-get -f install -y || true
+
+if [ -s failed_packages.txt ]; then
+  printf '\nSome packages failed to install. See failed_packages.txt\n'
+  cat failed_packages.txt
+else
+  printf '\nAll packages installed (or were ignored/missing).\n'
+fi
 
 sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null
 
@@ -203,4 +233,5 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
