@@ -69,10 +69,12 @@ done
 
 # Install CTFEnum
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
-# Download AccessChk
+
 mkdir -p /opt/Windows
-sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
 cd /opt/Windows
+
+# Download AccessChk
+sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
 sudo unzip -x AccessChk.zip 2>/dev/null
 sudo rm -f AccessChk.zip 2>/dev/null
 
@@ -200,6 +202,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
