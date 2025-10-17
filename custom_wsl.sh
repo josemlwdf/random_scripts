@@ -105,7 +105,7 @@ golang libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libpang
 libnss3 libxshmfence1 libgbm-dev libxkbcommon0 oracle-instantclient-sqlplus krb5-user
 nmap lsof gdb subfinder p7zip-full stegseek fping pkg-config btop hashid imagemagick
 traceroute libfuse3-dev python3-dev net-tools cewl pipx xxd steghide html2text cifs-utils
-medusa responder libpcap-dev mitmproxy nfs-common stegsnow cupp openvpn unrar
+medusa responder mitmproxy nfs-common stegsnow cupp openvpn unrar
 mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap
 john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier
 enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace
@@ -214,7 +214,7 @@ echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 export PATH="$HOME/.cargo/bin:$PATH"
 pipx install git+https://github.com/Pennyw0rth/NetExec
 
-echo removing installation garbage
+echo "Removing installation garbage"
 sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
 
@@ -235,6 +235,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
