@@ -98,6 +98,8 @@ sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/lnk_creator.ps1 -o lnk_creator.ps1 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/hhupd.exe -o hhupd.exe 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe -o snaffler.exe 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Inveigh.exe -o Inveigh.exe 2>/dev/null
+sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/Inveigh.ps1 -o Inveigh.ps1 2>/dev/null
 
 # Install various packages
 PKGS=(
@@ -236,6 +238,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
