@@ -171,6 +171,15 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/re
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null
 
+#linkedin2username
+git clone https://github.com/initstring/linkedin2username && cd linkedin2username
+sudo pip install -r requirements.txt --break-system-packages
+echo '#!/bin/bash' | sudo tee /usr/sbin/linkedin2username 2>/dev/null
+echo 'python3 /opt/linkedin2username/linkedin2username .py "$@"' | sudo tee -a /usr/sbin/linkedin2username 2>/dev/null 
+sudo chmod +x /usr/sbin/linkedin2username
+
+cd /opt
+
 # bat
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/bat_0.25.0_amd64.deb; sudo apt install -y ./bat_0.25.0_amd64.deb 2>/dev/null; sudo rm -f ./bat_0.25.0_amd64.deb 2>/dev/null
 
@@ -238,6 +247,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
