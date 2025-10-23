@@ -10,6 +10,9 @@ set -euo pipefail
 # Add Kali repository
 grep -qxF 'deb http://http.kali.org/kali kali-rolling main non-free contrib' /etc/apt/sources.list || \
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list
+wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2025.1_all.deb
+sudo apt install ./kali-archive-keyring*.deb
+rm ./kali-archive-keyring*.deb
 
 sudo apt update -y
 user=$(awk -F: '$3 == 1000 {print $1}' /etc/passwd)
@@ -248,6 +251,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
