@@ -115,7 +115,7 @@ medusa responder mitmproxy nfs-common stegsnow cupp openvpn unrar man
 mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap
 john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier
 enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace
-ntpsec-ntpdig tftp-hpa
+ntpsec-ntpdig tftp-hpa keepassxc-minimal
 )
 
 for pkg in "${PKGS[@]}"; do
@@ -174,6 +174,7 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null
+sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/keepass4brute/refs/heads/master/keepass4brute.sh -o /usr/sbin/keepass4brute 2>/dev/null
 
 #linkedin2username
 git clone https://github.com/initstring/linkedin2username && cd linkedin2username
@@ -251,6 +252,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
