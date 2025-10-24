@@ -175,6 +175,7 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/re
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
 sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/keepass4brute/refs/heads/master/keepass4brute.sh -o /usr/sbin/keepass4brute 2>/dev/null
+sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Windows-Exploit-Suggester/refs/heads/master/windows-exploit-suggester.py -o /usr/sbin/windows-exploit-suggester 2>/dev/null
 
 #linkedin2username
 git clone https://github.com/initstring/linkedin2username && cd linkedin2username
@@ -252,6 +253,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
