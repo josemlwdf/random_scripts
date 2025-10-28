@@ -169,7 +169,7 @@ sudo /usr/bin/curl -s https://raw.githubusercontent.com/edoardottt/takeover/mast
 cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
 cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
 sudo /usr/bin/curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster  -o /usr/sbin/cookiemonster 2>/dev/null
+sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster -o /usr/sbin/cookiemonster 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz 2>/dev/null
 sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
@@ -254,6 +254,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
