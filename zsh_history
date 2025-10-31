@@ -37,3 +37,4 @@ mitmproxy -p 8080
 mitmdump -w mitm_$(IP).pcap
 searchsploit ms17_010
 gowitness single http://$(IP) --timeout 10
+ping $(IP)
