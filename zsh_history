@@ -27,7 +27,7 @@ evil-winrm -i $(IP) -u 'Administrator' -p 'Password'
 enum4linux -a $(IP)
 smbget smb://$(IP)/share/flag.txt -u username -p password
 hashcat -m 1000 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt --status --status-timer=10
-john --wordlist=/opt/wordlists/rockyou.txt --rule=rockyou3000 hash.txt
+john --wordlist=/opt/wordlists/rockyou.txt --rules=rockyou-30000 hash.txt
 hashid '5f4dcc3b5aa765d61d8327deb882cf99'
 hydra-wizard
 nc -nvv $(IP) 4444
