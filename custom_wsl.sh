@@ -117,7 +117,7 @@ medusa responder mitmproxy nfs-common stegsnow cupp openvpn unrar man mitm6
 mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap
 john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier
 enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace
-ntpsec-ntpdig tftp-hpa keepassxc-minimal onesixtyone
+ntpsec-ntpdig tftp-hpa keepassxc-minimal onesixtyone krbrelayx
 )
 
 for pkg in "${PKGS[@]}"; do
@@ -257,6 +257,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
