@@ -250,7 +250,7 @@ alias hashid='hashid -m'
 alias dcode='dcode -q'
 alias chrome-wayland='/usr/sbin/chrome --ozone-platform=wayland'
 alias curl='curlie'
-alias cat='bat'
+alias cat='batcat'
 
 # enable auto-suggestions based on the history
 if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
