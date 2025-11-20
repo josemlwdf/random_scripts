@@ -2,7 +2,6 @@
 export RSUBNET=192.168.56.0/24
 export LHOST=192.168.56.1
 export REPO='githubrepo.com'
-export KEY='mykey.com'
 
 # INSTALL DPENDENCIES
 echo "Remember to use it like: bash -x ./script"
@@ -17,7 +16,6 @@ go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness
 curl https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh|bash
 
 # SETUP
-curl -s $KEY -o ~/.ssh/id_rsa
 chmod 400 ~/.ssh/id_rsa
 git clone $REPO
 ln -sf "`pwd`/PTEST" "`echo ~`/home"
