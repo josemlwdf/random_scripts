@@ -1,10 +1,13 @@
 # CONFIG
 export RSUBNET=192.168.56.0/24
 export LHOST=192.168.56.1
+export REPO='githubrepo.com'
+export KEY='mykey.com'
+
+# INSTALL DPENDENCIES
 echo "Remember to use it like: bash -x ./script"
 read waiting
 
-# INSTALL DPENDENCIES
 sudo apt update
 sudo apt install pipx git
 pipx ensurepath
@@ -14,10 +17,12 @@ go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness
 curl https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh|bash
 
 # SETUP
-git clone git@github.com:josemlwdf/PTEST.git
+curl -s $KEY -o ~/.ssh/id_rsa
+chmod 400 ~/.ssh/id_rsa
+git clone $REPO
 ln -sf "`pwd`/PTEST" "`echo ~`/home"
 cd ~/home
-curl https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/push -o push
+curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/push -o push
 chmod +x push
 mkdir -p vulns
 mkdir -p ip_files
