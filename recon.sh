@@ -4,7 +4,7 @@ export LHOST=192.168.56.1
 export REPO='githubrepo.com'
 
 # INSTALL DPENDENCIES
-echo "Remember to use it like: bash -x ./script"
+echo "Remember to use it like: bash -x ./recon.sh"
 read waiting
 echo "SSH Key was configured?"
 read waiting
