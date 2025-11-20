@@ -22,6 +22,7 @@ chmod 400 ~/.ssh/id_rsa
 git config --global user.name "josemlwdf"
 git config --global user.email "you@example.com"
 git clone $REPO
+rm -rf "`echo ~`/home"
 ln -sf "`pwd`/PTEST" "`echo ~`/home"
 cd ~/home
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/push -o push
