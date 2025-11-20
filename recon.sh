@@ -61,5 +61,5 @@ hydra -l root -P tmp/pws.txt -e nsr -t 4 -M ip_files/linux_hosts_ips.txt ssh | g
 
 # EXPORT
 git add .
-git commit -m "Initial Recon data"
+git commit -m "Initial Recon data: `date`"
 git push
