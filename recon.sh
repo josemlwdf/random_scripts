@@ -6,6 +6,8 @@ export REPO='githubrepo.com'
 # INSTALL DPENDENCIES
 echo "Remember to use it like: bash -x ./script"
 read waiting
+echo "SSH Key was configured?"
+read waiting
 
 sudo apt update
 sudo apt install pipx git
