@@ -219,6 +219,7 @@ echo 'Press Enter when the /opt folder is in place.'
 read timebreak
 sudo /usr/bin/curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
 sudo ln -sf /opt/google/chrome/chrome /usr/sbin/chrome 2>/dev/null
+sudo ln -sf /opt/Windows/pywerview/pywerview.py /usr/sbin/pywerview 2>/dev/null
 echo '/usr/sbin/chrome --proxy-server="http://localhost:8080"' > /tmp/chrome-proxy && chmod +x /tmp/chrome-proxy
 sudo mv /tmp/chrome-proxy /usr/sbin/chrome-proxy
 sudo chmod +x -R /opt/*
@@ -261,6 +262,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
