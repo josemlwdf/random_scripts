@@ -241,7 +241,6 @@ pipx install git+https://github.com/Pennyw0rth/NetExec
 /home/think/.local/bin/nxc --version
 
 echo "Removing installation garbage"
-sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
 sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
 
 # Install gcloud-cli
@@ -263,5 +262,6 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
