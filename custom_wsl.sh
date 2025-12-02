@@ -254,7 +254,7 @@ echo ' -> https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/
 # curlie
 curl -sS https://webinstall.dev/curlie | bash
 
-activate-global-python-argcomplete
+sudo activate-global-python-argcomplete
 
 # Mount G drive on WSL
 $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv: $mountpoint drvfs defaults 0 0" | sudo tee -a /etc/fstab; sudo mkdir -p "$mountpoint"; sudo mount -t drvfs "$drv:" "$mountpoint"; sudo systemctl daemon-reload)
@@ -262,6 +262,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
