@@ -230,7 +230,7 @@ sudo chmod +x /usr/sbin/kerbrute
 # Download and setup bash and zsh configs
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/kali-zshrc -o ~/.zshrc
 curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/bashrc -o ~/.bashrc
-curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/zsh_history -p ~/.zsh_history
+curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/zsh_history -o ~/.zsh_history
 sudo cp ~/.bashrc /root/.bashrc 2>/dev/null
 sudo cp ~/.zshrc /root/.zshrc 2>/dev/null
 sudo cp ~/.zsh_history /root/.zsh_history 2>/dev/null
@@ -262,6 +262,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
