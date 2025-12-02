@@ -238,7 +238,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.zshrc
 export PATH="$HOME/.cargo/bin:$PATH"
 pipx install git+https://github.com/Pennyw0rth/NetExec
-nxc --version
+/home/think/.local/bin/nxc --version
 
 echo "Removing installation garbage"
 sudo rm /opt/smtp-user-enum.pl.1 2>/dev/null
@@ -263,4 +263,5 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
