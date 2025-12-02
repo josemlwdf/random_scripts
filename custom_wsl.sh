@@ -85,29 +85,30 @@ sudo apt install unzip
 sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
 sudo unzip AccessChk.zip 2>/dev/null
 sudo rm -f AccessChk.zip 2>/dev/null
+sudo rm -f Eula.txt 2>/dev/null
 
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/ServerOperators.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2021-36934.exe 2>/dev/null
-sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/ExploitWindowsPrivileges/refs/heads/main/Kernel/CVE-2021-1675.ps1 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2020-0668.tar.gz 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpChrome.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpUp.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Seatbelt.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Watson.exe 2>/dev/null
-sudo /usr/bin/wget -s https://raw.githubusercontent.com/Arvanaghi/SessionGopher/refs/heads/master/SessionGopher.ps1 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.7/LaZagne.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cmd.exe 2>/dev/null
-sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/lnk_creator.ps1 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/hhupd.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Inveigh.exe 2>/dev/null
-sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/Inveigh.ps1 2>/dev/null
-sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/DomainPasswordSpray/refs/heads/master/DomainPasswordSpray.ps1 2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/WMIC.exe2>/dev/null
-sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Group3r.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/ServerOperators.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2021-36934.exe 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/ExploitWindowsPrivileges/refs/heads/main/Kernel/CVE-2021-1675.ps1 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2020-0668.tar.gz 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpChrome.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpUp.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Seatbelt.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Watson.exe 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/Arvanaghi/SessionGopher/refs/heads/master/SessionGopher.ps1 2>/dev/null
+sudo /usr/bin/wget https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.7/LaZagne.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cmd.exe 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/lnk_creator.ps1 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/hhupd.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Inveigh.exe 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/Inveigh.ps1 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/DomainPasswordSpray/refs/heads/master/DomainPasswordSpray.ps1 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/WMIC.exe2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Group3r.exe 2>/dev/null
 
 # Install various packages
 PKGS=(
@@ -149,7 +150,7 @@ go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness
 
 # Config for gdb
 echo 'set disassembly-flavor intel' > ~/.gdbinit
-/usr/bin/wget -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+/usr/bin/wget https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 
 # Subbrute
 cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
@@ -262,6 +263,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
