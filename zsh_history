@@ -5,7 +5,7 @@ onesixtyone $(IP) -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt
 gobuster dir -u http://$(IP)/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o gobuster_dir_$(IP).txt
 gobuster dns --domain inlanefreight.htb --no-error -w /opt/wordlists/subdomains-top1million-110000.txt -t 50 -o gobuster_dns_$(IP).txt
 gobuster vhost -u http://inlanefreight.htb -w /usr/share/seclists/Discovery/Web-Content/common.txt --append-domain
-ffuf -u http://$(IP)/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o ffuf_$(IP).json
+ffuf -u http://$(IP)/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -ic -t 50 -o ffuf_$(IP).json
 feroxbuster -u http://$(IP)/ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 50 -o ferox_$(IP).txt
 hydra -L /opt/wordlists/xato-net-10-million-usernames.txt -P /opt/wordlists/rockyou.txt ssh://$(IP) -t 4
 hydra -L /opt/wordlists/xato-net-10-million-usernames.txt -P /opt/wordlists/rockyou.txt smb://$(IP) -t 4
