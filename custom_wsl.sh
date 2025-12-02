@@ -86,28 +86,28 @@ sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Access
 sudo unzip AccessChk.zip 2>/dev/null
 sudo rm -f AccessChk.zip 2>/dev/null
 
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe -o SeDebugPrivilegeExploit.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe -o SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz -o SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/ServerOperators.exe -o ServerOperators.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2021-36934.exe -o CVE-2021-36934.exe 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/ExploitWindowsPrivileges/refs/heads/main/Kernel/CVE-2021-1675.ps1 -o CVE-2021-1675.ps1 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2020-0668.tar.gz -o CVE-2020-0668.tar.gz 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpChrome.exe -o sharpchrome.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpUp.exe -o sharpup.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Seatbelt.exe -o seatbelt.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Watson.exe -o Watson.exe 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/Arvanaghi/SessionGopher/refs/heads/master/SessionGopher.ps1 -o sessiongopher.ps1 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.7/LaZagne.exe -o lazagne.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cmd.exe -o cmd.exe 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/lnk_creator.ps1 -o lnk_creator.ps1 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/hhupd.exe -o hhupd.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe -o snaffler.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Inveigh.exe -o Inveigh.exe 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/Inveigh.ps1 -o Inveigh.ps1 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/DomainPasswordSpray/refs/heads/master/DomainPasswordSpray.ps1 -o DomainPasswordSpray.ps1 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/WMIC.exe -o WMIC.exe 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Group3r.exe -o group3r.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeLoadDriverPrivilegeExploit.tar.gz 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/ServerOperators.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2021-36934.exe 2>/dev/null
+sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/ExploitWindowsPrivileges/refs/heads/main/Kernel/CVE-2021-1675.ps1 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Kernel/CVE-2020-0668.tar.gz 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpChrome.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/ExploitWindowsPrivileges/raw/refs/heads/main/Perms/SharpUp.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Seatbelt.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Watson.exe 2>/dev/null
+sudo /usr/bin/wget -s https://raw.githubusercontent.com/Arvanaghi/SessionGopher/refs/heads/master/SessionGopher.ps1 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/AlessandroZ/LaZagne/releases/download/v2.4.7/LaZagne.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cmd.exe 2>/dev/null
+sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/lnk_creator.ps1 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/hhupd.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Snaffler.exe 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Inveigh.exe 2>/dev/null
+sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/Inveigh.ps1 2>/dev/null
+sudo /usr/bin/wget -s https://raw.githubusercontent.com/josemlwdf/DomainPasswordSpray/refs/heads/master/DomainPasswordSpray.ps1 2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/WMIC.exe2>/dev/null
+sudo /usr/bin/wget -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/Group3r.exe 2>/dev/null
 
 # Install various packages
 PKGS=(
@@ -149,7 +149,7 @@ go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness
 
 # Config for gdb
 echo 'set disassembly-flavor intel' > ~/.gdbinit
-curl -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py -o ~/.gdbinit-gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+/usr/bin/wget -s https://raw.githubusercontent.com/hugsy/gef/refs/heads/main/gef.py 2>/dev/null; echo source ~/.gdbinit-gef.py >> ~/.gdbinit
 
 # Subbrute
 cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
@@ -160,26 +160,26 @@ pipx ensurepath 2>/dev/null
 pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git 2>/dev/null
 
 # Download and configure additional files
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -o /etc/feroxbuster/ferox-config.toml 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -o /usr/sbin/policy_checker 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -o /usr/sbin/jwt_tool 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -o /usr/sbin/dcode 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -o /usr/sbin/get_ip_info 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -o /usr/sbin/shellps1 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -o /opt/docker.zip 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -o /usr/sbin/cptcracker-ng 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -o /usr/sbin/takeover; sudo chmod +x /usr/sbin/takeover 2>/dev/null
-cd /dev/shm; wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
-cd /opt; sudo wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
-sudo /usr/bin/curl -s https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -o /usr/sbin/swaks 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster -o /usr/sbin/cookiemonster 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -o /usr/sbin/http 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -o /usr/sbin/pcredz 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -o /usr/sbin/pcap_parser 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -o /usr/sbin/unescaper 2>/dev/null
-sudo /usr/bin/curl -s https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -o /usr/sbin/evtx_dump 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/keepass4brute/refs/heads/master/keepass4brute.sh -o /usr/sbin/keepass4brute 2>/dev/null
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/Windows-Exploit-Suggester/refs/heads/master/windows-exploit-suggester.py -o /usr/sbin/windows-exploit-suggester 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -O /etc/feroxbuster/ferox-config.toml 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -O /usr/sbin/policy_checker 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -O /usr/sbin/jwt_tool 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -O /usr/sbin/dcode 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -O /usr/sbin/get_ip_info 2>/dev/null
+sudo /usr/bin/wgets https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -O /usr/sbin/shellps1 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -O /opt/docker.zip 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -O /usr/sbin/cptcracker-ng 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -O /usr/sbin/takeover; sudo chmod +x /usr/sbin/takeover 2>/dev/null
+cd /dev/shm; /usr/bin/wget https://github.com/RedTeamPentesting/pretender/releases/download/v1.3.2/pretender_Linux_x86_64.tar.gz; untar pretender_Linux_x86_64.tar.gz; chmod +x pretender; rm LICENSE README.md; sudo mv pretender /usr/sbin; rm pretender_Linux_x86_64.tar.gz 
+cd /opt; sudo /usr/bin/wget https://raw.githubusercontent.com/pentestmonkey/smtp-user-enum/refs/heads/master/smtp-user-enum.pl; sudo chmod +x smtp-user-enum.pl; sudo ln -s /opt/smtp-user-enum.pl /usr/sbin/smtp_user_enum
+sudo /usr/bin/wget https://jetmore.org/john/code/swaks/files/swaks-20240103.0/swaks -O /usr/sbin/swaks 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/cookiemonster -O /usr/sbin/cookiemonster 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/py_server.py -O /usr/sbin/http 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/pcredz -O /usr/sbin/pcredz 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/PCAP_Parser/refs/heads/main/pcap_parser.py -O /usr/sbin/pcap_parser 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/Unescaper/refs/heads/main/unescaper.py -O /usr/sbin/unescaper 2>/dev/null
+sudo /usr/bin/wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/evtx_dump -O /usr/sbin/evtx_dump 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/keepass4brute/refs/heads/master/keepass4brute.sh -O /usr/sbin/keepass4brute 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/Windows-Exploit-Suggester/refs/heads/master/windows-exploit-suggester.py -O /usr/sbin/windows-exploit-suggester 2>/dev/null
 
 #linkedin2username
 git clone https://github.com/initstring/linkedin2username && cd linkedin2username
@@ -262,6 +262,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
