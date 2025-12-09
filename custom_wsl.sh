@@ -59,7 +59,7 @@ sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
 sudo apt install git -y
 # Install PIP
 sudo apt install python3-pip -y
-sudo pip3 install bloodyAD fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz scapy Cython --break-system-packages
+sudo pip3 install bloodyAD fierce tabulate colorama requests git-dumper pyftpdlib requests pypykatz scapy Cython ratelimit --break-system-packages
 
 sudo ln -s /usr/local/bin/git-dumper /usr/sbin/gitdumper 2>/dev/null
 # Create username-anarchy script
@@ -262,6 +262,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
