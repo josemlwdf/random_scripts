@@ -65,7 +65,7 @@ echo 'ROOT' >> tmp/pws.txt
 echo 'Root' >> tmp/pws.txt
 echo 'ROOTROOT' >> tmp/pws.txt
 echo 't00r' >> tmp/pws.txt
-hydra -l root -P tmp/pws.txt -e nsr -t 4 -M ip_files/linux_hosts_ips.txt ssh | grep 'login' --text | grep 'password' --text | tee vulns/ssh_bruteforce.txt
+nxc ssh ip_files/linux_hosts_ips.txt -u root -p tmp/pws.txt | grep 'SSH' --text | tee vulns/ssh_bruteforce.txt
 
 # EXPORT
 git add .
