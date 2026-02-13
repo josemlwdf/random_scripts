@@ -51,7 +51,7 @@ ln -sf /dev/null ~/.viminfo
 ln -sf /dev/null ~/.wget-hsts
 ln -sf /dev/null ~/.python_history
 # Append cron jobs safely, handling missing crontab case
-(echo '10 * * * * /usr/sbin/backup'; echo '60 * * * * sysctl -w vm.max_map_count=262144'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*'; echo '@reboot echo "nameserver 8.8.8.8" > /etc/resolv.conf
+(echo '10 * * * * /usr/sbin/backup'; echo '50 * * * * sysctl -w vm.max_map_count=262144'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*'; echo '@reboot echo "nameserver 8.8.8.8" > /etc/resolv.conf
 ' ) | sudo crontab -
 
 sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
@@ -262,6 +262,7 @@ $(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv
 # Update locate database
 echo updating file database
 sudo updatedb
+
 
 
 
