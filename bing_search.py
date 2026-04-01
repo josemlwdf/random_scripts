@@ -1070,13 +1070,27 @@ def collapse_similar_results(
 def keep_acceptable_results(
     results: list[dict[str, str]],
     minimum_score: float = MIN_ACCEPTABLE_RESULT_SCORE,
+    max_score_gap: float = 15.0,
 ) -> list[dict[str, str]]:
-    """Discard results whose relevance score marks them as unusable."""
+    """Discard results whose relevance score marks them as unusable.
+    
+    Filters by:
+    - Minimum score threshold (default 0.0, removes negative scores)
+    - Maximum score gap: removes results that are >= max_score_gap points below highest score
+    """
+    # First pass: filter by minimum score
     kept_results: list[dict[str, str]] = []
     for result in results:
         if float(result.get("score", float("-inf"))) < minimum_score:
             continue
         kept_results.append(result)
+    
+    # Second pass: filter by score gap to highest score
+    if kept_results:
+        max_score = max(float(r.get("score", 0)) for r in kept_results)
+        score_threshold = max_score - max_score_gap
+        kept_results = [r for r in kept_results if float(r.get("score", 0)) > score_threshold]
+    
     return kept_results
 
 
