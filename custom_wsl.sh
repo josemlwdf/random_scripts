@@ -10,7 +10,7 @@ set -euo pipefail
 # Add Kali repository
 grep -qxF 'deb http://http.kali.org/kali kali-rolling main non-free contrib' /etc/apt/sources.list || \
 echo 'deb http://http.kali.org/kali kali-rolling main non-free contrib' | sudo tee -a /etc/apt/sources.list
-wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2025.1_all.deb
+wget http://http.kali.org/kali/pool/main/k/kali-archive-keyring/kali-archive-keyring_2025.2_all.deb
 sudo apt install ./kali-archive-keyring*.deb
 rm ./kali-archive-keyring*.deb
 
