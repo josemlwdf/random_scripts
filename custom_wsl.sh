@@ -5,7 +5,88 @@
 # DO NOT USE SUDO
 # echo ''>script;nano script;chmod +x script;bash -x ./script
 
-set -euo pipefail
+set -Euo pipefail
+shopt -s nullglob
+
+LOG_FILE="${LOG_FILE:-$HOME/custom_wsl_install.log}"
+FAILED_STEPS=()
+
+mkdir -p "$(dirname "$LOG_FILE")"
+touch "$LOG_FILE"
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+on_err() {
+  local rc="${3:-$?}"
+  local line="${1:-?}"
+  local cmd="${2:-unknown}"
+  printf '\n[ERROR] line %s rc=%s: %s\n' "$line" "$rc" "$cmd"
+  FAILED_STEPS+=("line ${line}: ${cmd} (rc=${rc})")
+  return 0
+}
+
+trap 'on_err "$LINENO" "$BASH_COMMAND" "$?"' ERR
+
+note() { printf '\n[+] %s\n' "$*"; }
+
+run() {
+  local desc="$1"; shift
+  note "$desc"
+  "$@"
+  local rc=$?
+  if (( rc != 0 )); then
+    printf '[WARN] %s failed with rc=%s\n' "$desc" "$rc"
+  fi
+  return 0
+}
+
+safe_link() {
+  local src="$1" dst="$2"
+  ln -sfn "$src" "$dst" 2>/dev/null || true
+}
+
+mirror_url() {
+  local u="$1"
+  case "$u" in
+    https://raw.githubusercontent.com/*/refs/heads/*)
+      local path="${u#https://raw.githubusercontent.com/}"
+      local repo="${path%%/refs/heads/*}"
+      local rest="${path#*/refs/heads/}"
+      printf 'https://github.com/%s/raw/refs/heads/%s\n' "$repo" "$rest"
+      ;;
+    https://github.com/*/raw/refs/heads/*)
+      local path="${u#https://github.com/}"
+      local repo="${path%%/raw/*}"
+      local rest="${path#*/raw/}"
+      printf 'https://raw.githubusercontent.com/%s/%s\n' "$repo" "$rest"
+      ;;
+    *)
+      return 1
+      ;;
+  esac
+}
+
+download_try() {
+  local dest="$1"; shift
+  local urls=("$@")
+  local tmp url candidate
+  tmp="$(mktemp)"
+
+  for url in "${urls[@]}"; do
+    for candidate in "$url" "$(mirror_url "$url" 2>/dev/null || true)"; do
+      [[ -z "${candidate:-}" ]] && continue
+      printf '[..] trying %s\n' "$candidate"
+      if curl -fsSL --retry 3 --retry-delay 2 --connect-timeout 10 "$candidate" -o "$tmp"; then
+        sudo install -Dm644 "$tmp" "$dest"
+        rm -f "$tmp"
+        return 0
+      fi
+    done
+  done
+
+  rm -f "$tmp"
+  return 1
+}
+
 
 # Add Kali repository
 grep -qxF 'deb http://http.kali.org/kali kali-rolling main non-free contrib' /etc/apt/sources.list || \
@@ -21,8 +102,8 @@ sudo chsh -s /bin/zsh root
 sudo chown $user:$user /opt 2>/dev/null
 sudo chmod 777 /opt 2>/dev/null
 # Suppress login messages
-sudo touch ~/.hushlogin
-sudo touch /root/.hushlogin
+touch ~/.hushlogin 2>/dev/null || true
+sudo touch /root/.hushlogin 2>/dev/null || true
 mkdir -p ~/CTF
 PLATFORMS=("HackMyVM" "HTB" "DockerLabs" "OSCP" "OTW" "THM"
          "VulnHub" "Vulnyx")
@@ -30,7 +111,9 @@ for platform in "${PLATFORMS[@]}"; do
     mkdir -p ~/CTF/$platform
 done 
 mkdir -p ~/CTF/OSCP/Play
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf -o /etc/wsl.conf
+download_try /etc/wsl.conf \
+  https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/wsl.conf \
+  https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/wsl.conf || true
 
 # INSTALL GEMINI
 sudo apt install nodejs npm -y
@@ -39,8 +122,8 @@ sudo npm install -g @google/gemini-cli
 echo "Your Windows Username:"
 read wusername
 # Create symlinks to Windows Downloads folder, force if they exist
-ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads  2>/dev/null
-sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads  2>/dev/null
+ln -sf /mnt/c/Users/$wusername/Downloads ~/Downloads 2>/dev/null
+sudo ln -sf /mnt/c/Users/$wusername/Downloads /root/Downloads 2>/dev/null
 
 # Create an edit script
 echo 'notepad.exe "$1"' | sudo tee /usr/sbin/edit >/dev/null
@@ -51,10 +134,16 @@ ln -sf /dev/null ~/.viminfo
 ln -sf /dev/null ~/.wget-hsts
 ln -sf /dev/null ~/.python_history
 # Append cron jobs safely, handling missing crontab case
-(echo '10 * * * * /usr/sbin/backup'; echo '50 * * * * sysctl -w vm.max_map_count=262144'; echo '2 * * * * /usr/bin/rm -rf /wsl*'; echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'; echo '2 * * * * /usr/bin/rm -rf /tmp/*'; echo '@reboot echo "nameserver 8.8.8.8" > /etc/resolv.conf
-' ) | sudo crontab -
+{
+  echo '10 * * * * /usr/sbin/backup'
+  echo '50 * * * * sysctl -w vm.max_map_count=262144'
+  echo '2 * * * * /usr/bin/rm -rf /wsl*'
+  echo '2 * * * * /usr/bin/rm -rf ~/*.tmp*'
+  echo '2 * * * * /usr/bin/rm -rf /tmp/*'
+  echo '@reboot echo "nameserver 8.8.8.8" > /etc/resolv.conf'
+} | sudo crontab - || true
 
-sudo ln -s /usr/bin/python3 /usr/sbin/python 2>/dev/null
+sudo ln -sfn /usr/bin/python3 /usr/sbin/python 2>/dev/null || true
 # Install Git
 sudo apt install git -y
 # Install PIP
@@ -74,18 +163,20 @@ for script in "${SCRIPTS[@]}"; do
 done
 
 # Install CTFEnum
-sudo /usr/bin/curl -s https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash
+curl -fsSL --retry 3 --retry-delay 2 https://raw.githubusercontent.com/josemlwdf/CTFEnum/main/install.sh | bash || true
 
 mkdir -p /opt/Windows
 cd /opt/Windows
 
-sudo apt install unzip 
+sudo apt install -y unzip 
 
 # Download AccessChk
-sudo wget https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip 2>/dev/null
-sudo unzip AccessChk.zip 2>/dev/null
-sudo rm -f AccessChk.zip 2>/dev/null
-sudo rm -f Eula.txt 2>/dev/null
+download_try /opt/Windows/AccessChk.zip \
+  https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/AccessChk.zip \
+  https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/AccessChk.zip || true
+sudo unzip -o /opt/Windows/AccessChk.zip 2>/dev/null || true
+sudo rm -f /opt/Windows/AccessChk.zip 2>/dev/null || true
+sudo rm -f Eula.txt 2>/dev/null || true
 
 sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeDebugPrivilegeExploit.exe 2>/dev/null
 sudo /usr/bin/wget https://github.com/josemlwdf/ExploitWindowsPrivileges/releases/download/v0.1.0/SeTakeOwnershipPrivilegeExploit.exe 2>/dev/null
@@ -143,10 +234,11 @@ else
   printf '\nAll packages installed (or were ignored/missing).\n'
 fi
 
-sudo ln -s /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null
+sudo ln -sfn /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null || true
 
 # Install Gowitness
-go install github.com/sensepost/gowitness@latest; sudo mv $HOME/go/bin/gowitness /usr/sbin
+go install github.com/sensepost/gowitness@latest || true
+if [[ -f "$HOME/go/bin/gowitness" ]]; then sudo install -m 755 "$HOME/go/bin/gowitness" /usr/sbin/gowitness; else echo '[WARN] gowitness binary not found after install'; fi
 
 # Config for gdb
 echo 'set disassembly-flavor intel' > ~/.gdbinit
@@ -154,19 +246,21 @@ echo 'set disassembly-flavor intel' > ~/.gdbinit
 
 # Subbrute
 cd /opt; sudo git clone https://github.com/TheRook/subbrute.git >> /dev/null 2>&1; 
-sudo ln -s /opt/subbrute/subbrute.py /usr/sbin/subbrute 2>/dev/null
+sudo ln -sfn /opt/subbrute/subbrute.py /usr/sbin/subbrute 2>/dev/null || true
 sudo sh -c "echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle-instantclient.conf";sudo ldconfig
 sudo nmap --script-updatedb 2>/dev/null
 pipx ensurepath 2>/dev/null
 pipx install git+https://github.com/hvs-consulting/nfs-security-tooling.git 2>/dev/null
 
 # Download and configure additional files
-sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml -O /etc/feroxbuster/ferox-config.toml 2>/dev/null
+download_try /etc/feroxbuster/ferox-config.toml \
+  https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/ferox-config.toml \
+  https://github.com/josemlwdf/random_scripts/raw/refs/heads/main/ferox-config.toml || true
 sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/PasswordPolicyChecker/refs/heads/main/policy_checker.py -O /usr/sbin/policy_checker 2>/dev/null
 sudo /usr/bin/wget https://raw.githubusercontent.com/ticarpi/jwt_tool/refs/heads/master/jwt_tool.py -O /usr/sbin/jwt_tool 2>/dev/null
 sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/Decodify/refs/heads/master/dcode -O /usr/sbin/dcode 2>/dev/null
 sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/check_ip_info/refs/heads/main/get_ip_info  -O /usr/sbin/get_ip_info 2>/dev/null
-sudo /usr/bin/wgets https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -O /usr/sbin/shellps1 2>/dev/null
+sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/PowerShellBase64ReverseShell.py -O /usr/sbin/shellps1 2>/dev/null
 sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/docker.zip -O /opt/docker.zip 2>/dev/null
 sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/random_scripts/refs/heads/main/cptcracker-ng -O /usr/sbin/cptcracker-ng 2>/dev/null
 sudo /usr/bin/wget https://raw.githubusercontent.com/edoardottt/takeover/master/takeover.py -O /usr/sbin/takeover; sudo chmod +x /usr/sbin/takeover 2>/dev/null
@@ -186,7 +280,7 @@ sudo /usr/bin/wget https://raw.githubusercontent.com/josemlwdf/Windows-Exploit-S
 git clone https://github.com/initstring/linkedin2username && cd linkedin2username
 sudo pip install -r requirements.txt --break-system-packages
 echo '#!/bin/bash' | sudo tee /usr/sbin/linkedin2username 2>/dev/null
-echo 'python3 /opt/linkedin2username/linkedin2username .py "$@"' | sudo tee -a /usr/sbin/linkedin2username 2>/dev/null 
+echo 'python3 /opt/linkedin2username/linkedin2username.py "$@"' | sudo tee -a /usr/sbin/linkedin2username 2>/dev/null 
 sudo chmod +x /usr/sbin/linkedin2username
 
 cd /opt
@@ -212,19 +306,23 @@ read ntoken
 ngrok config add-authtoken $ntoken
 sudo ngrok config add-authtoken $ntoken
 # Generate SSH keys
-mkdir ~/.ssh
-ssh-keygen -t rsa -b 4096
+mkdir -p ~/.ssh
+if [[ ! -f ~/.ssh/id_rsa ]]; then
+  ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N '' || true
+fi
 # Instructions for the user
 echo '[!] Download the /opt folder backup from Mega'
 echo 'Press Enter when the /opt folder is in place.'
 read timebreak
-sudo /usr/bin/curl https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt -o /opt/wordlists/fasttrack.txt
+download_try /opt/wordlists/fasttrack.txt \
+  https://raw.githubusercontent.com/drtychai/wordlists/refs/heads/master/fasttrack.txt \
+  https://github.com/drtychai/wordlists/raw/refs/heads/master/fasttrack.txt || true
 sudo ln -sf /opt/google/chrome/chrome /usr/sbin/chrome 2>/dev/null
 sudo ln -sf /opt/Windows/pywerview/pywerview.py /usr/sbin/pywerview 2>/dev/null
 echo '/usr/sbin/chrome --proxy-server="http://localhost:8080"' > /tmp/chrome-proxy && chmod +x /tmp/chrome-proxy
 sudo mv /tmp/chrome-proxy /usr/sbin/chrome-proxy
-sudo chmod +x -R /opt/*
-sudo ln -s /opt/kerbrute /usr/sbin/kerbrute
+sudo chmod +x -R /opt/* 2>/dev/null || true
+sudo ln -sfn /opt/kerbrute /usr/sbin/kerbrute
 sudo chmod +x /usr/sbin/kerbrute
 
 # Download and setup bash and zsh configs
@@ -241,11 +339,12 @@ pipx install git+https://github.com/Pennyw0rth/NetExec
 /home/think/.local/bin/nxc --version
 
 echo "Removing installation garbage"
-sudo find / -name *$'\r' -exec rm -rf {} \; 2>/dev/null
+sudo find / -type f -name $'*\r' -exec rm -f {} + 2>/dev/null || true
 
 # Install gcloud-cli
 cd /opt
-sudo /usr/bin/curl -s -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz && sudo untar google-cloud-cli-linux-x86_64.tar.gz && sudo ./google-cloud-sdk/install.sh
+sudo /usr/bin/curl -fsSLO https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-x86_64.tar.gz || true
+if [[ -f google-cloud-cli-linux-x86_64.tar.gz ]]; then sudo untar google-cloud-cli-linux-x86_64.tar.gz || true; sudo ./google-cloud-sdk/install.sh || true; fi
 sudo rm google-cloud-cli-linux-x86_64.tar.gz
 
 echo 'BONUS: Launch this Script Powershell as Administrator on Windows to redirect the connections to your common Windows ports to your WSL.'
@@ -257,16 +356,8 @@ curl -sS https://webinstall.dev/curlie | bash
 sudo activate-global-python-argcomplete
 
 # Mount G drive on WSL
-$(drv=G; mountpoint="/mnt/$(echo $drv | tr '[:upper:]' '[:lower:]')"; echo "$drv: $mountpoint drvfs defaults 0 0" | sudo tee -a /etc/fstab; sudo mkdir -p "$mountpoint"; sudo mount -t drvfs "$drv:" "$mountpoint"; sudo systemctl daemon-reload)
+{ drv=G; mountpoint="/mnt/$(echo "$drv" | tr '[:upper:]' '[:lower:]')"; echo "$drv: $mountpoint drvfs defaults 0 0" | sudo tee -a /etc/fstab >/dev/null; sudo mkdir -p "$mountpoint"; sudo mount -t drvfs "$drv:" "$mountpoint" || true; sudo systemctl daemon-reload || true; }
 
 # Update locate database
 echo updating file database
 sudo updatedb
-
-
-
-
-
-
-
-
