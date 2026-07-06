@@ -211,7 +211,7 @@ medusa responder mitmproxy nfs-common stegsnow cupp openvpn unrar man mitm6 wafw
 mariadb-client-core ffuf file php exiftool impacket-scripts python3-impacket rlwrap
 john smbmap smbclient nikto exploitdb hydra wpscan poppler-utils sqlmap hash-identifier
 enum4linux hashcat dos2unix whatweb docker.io knockd evil-winrm jq strace ltrace
-ntpsec-ntpdig tftp-hpa keepassxc-minimal onesixtyone krbrelayx
+ntpsec-ntpdig tftp-hpa keepassxc-minimal onesixtyone krbrelayx python3-wsgidav
 )
 
 for pkg in "${PKGS[@]}"; do
@@ -235,6 +235,7 @@ else
 fi
 
 sudo ln -sfn /usr/bin/pdftotext /usr/sbin/pdf2text 2>/dev/null || true
+sudo ln -sfn /usr/bin/wsgidav /usr/bin/webdav 2>/dev/null || true
 
 # Install Gowitness
 go install github.com/sensepost/gowitness@latest || true
