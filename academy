@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 openvpnfile="/opt/academy.ovpn"
 
 sudo ip link delete tun0
