@@ -1,2 +1,8 @@
 #!/bin/bash
-sudo openvpn /opt/academy.ovpn
+openvpnfile="/opt/academy.ovpn"
+
+# Append tun-mtu using sudo if missing
+grep -q "^tun-mtu" "$openvpnfile" || echo "tun-mtu 1200" | sudo tee -a "$openvpnfile" > /dev/null
+
+# Launch OpenVPN
+sudo openvpn "$openvpnfile"
