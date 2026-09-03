@@ -1,8 +1,12 @@
 #!/bin/bash
+clear
 openvpnfile="/opt/thm.ovpn"
 
+sudo ip link delete tun0
+sudo ip link delete tun1
+
 # Append tun-mtu using sudo if missing
-grep -q "^tun-mtu" "$openvpnfile" || echo "tun-mtu 1200" | sudo tee -a "$openvpnfile" > /dev/null
+grep -q "^tun-mtu 1200" "$openvpnfile" || echo "tun-mtu 1200" | sudo tee -a "$openvpnfile" > /dev/null
 
 # Launch OpenVPN
 sudo openvpn "$openvpnfile"
