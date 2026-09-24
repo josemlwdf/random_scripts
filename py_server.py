@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 import os
+import sys
 
 class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
     def do_POST(self):
@@ -40,4 +41,9 @@ def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=
     httpd.serve_forever()
 
 if __name__ == '__main__':
-    run()
+    port = 80
+    try: 
+        port = int(sys.argv[1])
+    except:
+        pass
+    run(port=port)
