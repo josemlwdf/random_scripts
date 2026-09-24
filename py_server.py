@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import ssl
+import subprocess
 import sys
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 
@@ -38,6 +39,39 @@ class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
         super().do_GET()
 
 
+def generate_self_signed_cert(certfile="cert.pem", keyfile="key.pem"):
+    """Generates a self-signed TLS certificate and private key via OpenSSL CLI."""
+    print(f"Generating self-signed certificate '{certfile}' and key '{keyfile}'...")
+    cmd = [
+        "openssl",
+        "req",
+        "-x509",
+        "-newkey",
+        "rsa:2048",
+        "-keyout",
+        keyfile,
+        "-out",
+        certfile,
+        "-days",
+        "365",
+        "-nodes",
+        "-subj",
+        "/CN=localhost",
+    ]
+    try:
+        subprocess.run(
+            cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+        )
+        print("Certificate and key generated successfully.")
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError) as err:
+        print(
+            f"Warning: Failed to generate certificate via OpenSSL ({err}).",
+            file=sys.stderr,
+        )
+        return False
+
+
 def run(
     port=8443,
     certfile="cert.pem",
@@ -47,6 +81,18 @@ def run(
 ):
     server_address = ("", port)
     httpd = server_class(server_address, handler_class)
+
+    generated_files = []
+
+    # Automatically generate cert and key if missing, tracking what was created
+    if not (os.path.exists(certfile) and os.path.exists(keyfile)):
+        if not os.path.exists(certfile):
+            generated_files.append(certfile)
+        if not os.path.exists(keyfile):
+            generated_files.append(keyfile)
+
+        if not generate_self_signed_cert(certfile, keyfile):
+            generated_files.clear()
 
     # Enable HTTPS if certificate and key files exist
     if os.path.exists(certfile) and os.path.exists(keyfile):
@@ -63,7 +109,26 @@ def run(
     print(
         f"Serving {scheme} on port {port} (GET to list/download, POST to upload)..."
     )
-    httpd.serve_forever()
+
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nKeyboardInterrupt received. Stopping server...")
+    finally:
+        httpd.server_close()
+        # Clean up auto-generated files on exit
+        if generated_files:
+            print("Cleaning up auto-generated certificate files...")
+            for filepath in generated_files:
+                if os.path.exists(filepath):
+                    try:
+                        os.remove(filepath)
+                        print(f"Removed: {filepath}")
+                    except OSError as err:
+                        print(
+                            f"Failed to remove '{filepath}': {err}",
+                            file=sys.stderr,
+                        )
 
 
 if __name__ == "__main__":
