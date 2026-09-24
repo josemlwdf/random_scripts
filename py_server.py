@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
-from http.server import SimpleHTTPRequestHandler, HTTPServer
 import os
+import ssl
 import sys
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
 
 class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
+
     def do_POST(self):
         # Print all request headers
         print("=== Received POST Headers ===")
@@ -12,7 +15,7 @@ class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
         print("=============================")
 
         # Read the body
-        content_length = int(self.headers.get('Content-Length', 0))
+        content_length = int(self.headers.get("Content-Length", 0))
         post_data = self.rfile.read(content_length)
 
         # Save the body to a file
@@ -34,16 +37,49 @@ class ExtendedHTTPRequestHandler(SimpleHTTPRequestHandler):
         # Call the parent handler to serve files normally
         super().do_GET()
 
-def run(server_class=HTTPServer, handler_class=ExtendedHTTPRequestHandler, port=80):
-    server_address = ('', port)
+
+def run(
+    port=8443,
+    certfile="cert.pem",
+    keyfile="key.pem",
+    server_class=HTTPServer,
+    handler_class=ExtendedHTTPRequestHandler,
+):
+    server_address = ("", port)
     httpd = server_class(server_address, handler_class)
-    print(f"Serving HTTP on port {port} (GET to list/download, POST to upload)...")
+
+    # Enable HTTPS if certificate and key files exist
+    if os.path.exists(certfile) and os.path.exists(keyfile):
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+        context.load_cert_chain(certfile=certfile, keyfile=keyfile)
+        httpd.socket = context.wrap_socket(httpd.socket, server_side=True)
+        scheme = "HTTPS"
+    else:
+        scheme = "HTTP"
+        print(
+            f"Notice: '{certfile}' or '{keyfile}' not found. Running over unencrypted HTTP."
+        )
+
+    print(
+        f"Serving {scheme} on port {port} (GET to list/download, POST to upload)..."
+    )
     httpd.serve_forever()
 
-if __name__ == '__main__':
-    port = 80
-    try: 
-        port = int(sys.argv[1])
-    except:
-        pass
-    run(port=port)
+
+if __name__ == "__main__":
+    port = 8443
+    certfile = "cert.pem"
+    keyfile = "key.pem"
+
+    # Positional arguments: script.py [port] [certfile] [keyfile]
+    if len(sys.argv) > 1:
+        try:
+            port = int(sys.argv[1])
+        except ValueError:
+            pass
+    if len(sys.argv) > 2:
+        certfile = sys.argv[2]
+    if len(sys.argv) > 3:
+        keyfile = sys.argv[3]
+
+    run(port=port, certfile=certfile, keyfile=keyfile)
